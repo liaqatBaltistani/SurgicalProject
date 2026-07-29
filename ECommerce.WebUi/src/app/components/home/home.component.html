@@ -1,0 +1,50 @@
+<div class="home-container">
+  <nav class="navbar">
+    <div class="nav-brand">ECommerce</div>
+    <div class="nav-links">
+      <a href="/products" routerLink="/products">Products</a>
+      <a href="/cart"  routerLink="/cart">Cart</a>
+      <a href="/orders"  routerLink="/orders">My Orders</a>
+      <a href="/admin"  *ngIf="currentUser?.role === 'admin'" routerLink="/admin" class="admin-link">Admin</a>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="welcome-section">
+    <h1>Welcome, {{ currentUser?.firstName || 'Guest' }}!</h1>
+    <p *ngIf="currentUser">You are logged in as {{ currentUser?.email }}</p>
+    <p *ngIf="!currentUser">Browse our products and start shopping</p>
+  </div>
+
+  <div class="products-header">
+    <h1>Our Products</h1>
+    <div class="search-bar">
+      <input [(ngModel)]="searchQuery" (input)="searchProducts()" placeholder="Search products..." />
+      <button (click)="searchProducts()">Search</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading products...</div>
+
+  <div *ngIf="!loading" class="products-grid">
+    <div *ngFor="let product of filteredProducts" class="product-card" (click)="viewProductDetails(product.productId)">
+      <div class="product-image">
+        <img [src]="product.imageUrl || 'https://via.placeholder.com/200'" [alt]="product.name" />
+      </div>
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <div class="product-price">
+          <span class="current-price">${{ product.price.toFixed(2) }}</span>
+        </div>
+        <div class="product-actions">
+          <button (click)="addToCart(product.productId, $event)" class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && filteredProducts.length === 0" class="no-products">
+    No products found matching your search.
+  </div>
+</div>

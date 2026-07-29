@@ -1,0 +1,72 @@
+<div class="product-details-container">
+  <nav class="navbar">
+    <div class="nav-brand">ECommerce</div>
+    <div class="nav-links">
+      <a routerLink="/home">Home</a>
+      <a routerLink="/products">Products</a>
+      <a routerLink="/cart">Cart</a>
+      <a routerLink="/orders">My Orders</a>
+      <button (click)="goBack()" class="back-btn">← Back</button>
+    </div>
+  </nav>
+
+  <div *ngIf="loading" class="loading">Loading product details...</div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error && product" class="product-details">
+    <div class="product-image-section">
+      <div class="main-image">
+        <img [src]="product.imageUrl || 'https://via.placeholder.com/500'" [alt]="product.name" />
+      </div>
+    </div>
+
+    <div class="product-info-section">
+      <h1 class="product-name">{{ product.name }}</h1>
+      <div class="product-category">
+        <span class="category-label">Category:</span>
+        <span class="category-name">{{ product.categoryName }}</span>
+      </div>
+      
+      <div class="product-price">
+        <span class="current-price">${{ product.price.toFixed(2) }}</span>
+        <span *ngIf="product.originalPrice && product.originalPrice > product.price" class="original-price">
+          ${{ product.originalPrice.toFixed(2) }}
+        </span>
+      </div>
+
+      <div class="product-stock">
+        <span [class.in-stock]="product.stockQuantity > 0" [class.out-of-stock]="product.stockQuantity === 0">
+          {{ product.stockQuantity > 0 ? `In Stock (${product.stockQuantity} available)` : 'Out of Stock' }}
+        </span>
+      </div>
+
+      <div class="product-description">
+        <h2>Description</h2>
+        <p>{{ product.description }}</p>
+      </div>
+
+      <div *ngIf="product.specifications" class="product-specifications">
+        <h2>Specifications</h2>
+        <div class="spec-item" *ngFor="let spec of parseSpecifications(product.specifications)">
+          <span class="spec-label">{{ spec.label }}:</span>
+          <span class="spec-value">{{ spec.value }}</span>
+        </div>
+      </div>
+
+      <div class="product-actions">
+        <div class="quantity-selector">
+          <button (click)="decreaseQuantity()" [disabled]="quantity <= 1">-</button>
+          <input [(ngModel)]="quantity" type="number" min="1" [max]="product.stockQuantity" />
+          <button (click)="increaseQuantity()" [disabled]="quantity >= product.stockQuantity">+</button>
+        </div>
+        <button 
+          (click)="addToCart()" 
+          class="add-to-cart-btn"
+          [disabled]="product.stockQuantity === 0 || quantity < 1">
+          {{ product.stockQuantity === 0 ? 'Out of Stock' : 'Add to Cart' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

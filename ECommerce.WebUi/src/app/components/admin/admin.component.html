@@ -1,0 +1,145 @@
+<div class="admin-container">
+  <nav class="navbar">
+    <div class="nav-brand">ECommerce Admin</div>
+    <div class="nav-links">
+      <a routerLink="/home">Back to Store</a>
+    </div>
+  </nav>
+
+  <div class="admin-content">
+    <div class="admin-sidebar">
+      <button [class.active]="activeTab === 'products'" (click)="setActiveTab('products')">Products</button>
+      <button [class.active]="activeTab === 'orders'" (click)="setActiveTab('orders')">Orders</button>
+    </div>
+
+    <div class="admin-main">
+      <!-- Products Tab -->
+      <div *ngIf="activeTab === 'products'" class="tab-content">
+        <div class="tab-header">
+          <h2>Products Management</h2>
+          <button (click)="openProductForm()" class="add-btn">Add Product</button>
+        </div>
+
+        <div *ngIf="loading" class="loading">Loading...</div>
+
+        <div *ngIf="!loading" class="products-table">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products">
+                <td>{{ product.productId }}</td>
+                <td>{{ product.name }}</td>
+                <td>${{ product.price.toFixed(2) }}</td>
+                <td>{{ product.stockQuantity }}</td>
+                <td>{{ product.isActive ? 'Yes' : 'No' }}</td>
+                <td>
+                  <button (click)="openProductForm(product)" class="edit-btn">Edit</button>
+                  <button (click)="deleteProduct(product.productId)" class="delete-btn">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Orders Tab -->
+      <div *ngIf="activeTab === 'orders'" class="tab-content">
+        <div class="tab-header">
+          <h2>Orders Management</h2>
+        </div>
+
+        <div *ngIf="loading" class="loading">Loading...</div>
+
+        <div *ngIf="!loading" class="orders-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>{{ order.orderNumber }}</td>
+                <td>{{ order.createdDate | date:'short' }}</td>
+                <td>{{ order.userName }}</td>
+                <td>${{ order.totalAmount.toFixed(2) }}</td>
+                <td>
+                  <select (change)="onOrderStatusChange($event, order.orderId)" [value]="order.orderStatus">
+                    <option value="Pending">Pending</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </td>
+                <td>
+                  <button class="view-btn">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Form Modal -->
+  <div *ngIf="showProductForm" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>{{ editingProduct ? 'Edit Product' : 'Add Product' }}</h3>
+        <button (click)="closeProductForm()" class="close-btn">&times;</button>
+      </div>
+      <form (ngSubmit)="saveProduct()">
+        <div class="form-group">
+          <label>Name</label>
+          <input [(ngModel)]="productForm.name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea [(ngModel)]="productForm.description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input type="number" [(ngModel)]="productForm.price" name="price" required min="0" step="0.01" />
+        </div>
+        <div class="form-group">
+          <label>Stock Quantity</label>
+          <input type="number" [(ngModel)]="productForm.stockQuantity" name="stockQuantity" required min="0" />
+        </div>
+        <div class="form-group">
+          <label>Image URL</label>
+          <input [(ngModel)]="productForm.imageUrl" name="imageUrl" />
+        </div>
+        <div class="form-group">
+          <label>Category ID</label>
+          <input type="number" [(ngModel)]="productForm.categoryId" name="categoryId" required />
+        </div>
+        <div class="form-group checkbox">
+          <input type="checkbox" [(ngModel)]="productForm.isActive" name="isActive" id="isActive" />
+          <label for="isActive">Active</label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" (click)="closeProductForm()" class="cancel-btn">Cancel</button>
+          <button type="submit" [disabled]="loading" class="save-btn">
+            {{ loading ? 'Saving...' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

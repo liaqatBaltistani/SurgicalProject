@@ -1,0 +1,70 @@
+<div class="checkout-container">
+  <nav class="navbar">
+    <div class="nav-brand">ECommerce</div>
+    <div class="nav-links">
+      <a routerLink="/home">Home</a>
+      <a routerLink="/products">Products</a>
+      <a routerLink="/cart">Cart</a>
+    </div>
+  </nav>
+
+  <div class="checkout-content">
+    <h1>Checkout</h1>
+
+    <div *ngIf="loading" class="loading">Processing...</div>
+
+    <div *ngIf="!loading && cart" class="checkout-grid">
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+        <div class="summary-items">
+          <div *ngFor="let item of cart.items" class="summary-item">
+            <div class="item-info">
+              <span class="item-name">{{ item.productName }}</span>
+              <span class="item-qty">x{{ item.quantity }}</span>
+            </div>
+            <span class="item-price">${{ item.totalPrice.toFixed(2) }}</span>
+          </div>
+        </div>
+        <div class="summary-totals">
+          <div class="total-row">
+            <span>Subtotal</span>
+            <span>${{ cart?.totalAmount.toFixed(2) }}</span>
+          </div>
+          <div *ngIf="discountApplied" class="total-row discount">
+            <span>Discount ({{ discountCode }})</span>
+            <span>-${{ discountAmount.toFixed(2) }}</span>
+          </div>
+          <div class="total-row final">
+            <span>Total</span>
+            <span>${{ finalTotal.toFixed(2) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkout-form">
+        <h2>Discount Code</h2>
+        <div class="discount-section">
+          <div class="discount-input">
+            <input
+              type="text"
+              [(ngModel)]="discountCode"
+              placeholder="Enter discount code"
+            />
+            <button (click)="applyDiscount()" [disabled]="!discountCode.trim()">Apply</button>
+          </div>
+          <button *ngIf="discountApplied" (click)="removeDiscount()" class="remove-discount">Remove Discount</button>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <button (click)="placeOrder()" [disabled]="loading" class="place-order-btn">
+          {{ loading ? 'Processing...' : `Place Order - $${finalTotal.toFixed(2)}` }}
+        </button>
+
+        <button routerLink="/cart" class="back-btn">Back to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>

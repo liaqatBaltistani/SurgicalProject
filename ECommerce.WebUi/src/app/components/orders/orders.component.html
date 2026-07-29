@@ -1,0 +1,56 @@
+<div class="orders-container">
+  <nav class="navbar">
+    <div class="nav-brand">ECommerce</div>
+    <div class="nav-links">
+      <a routerLink="/home">Home</a>
+      <a routerLink="/products">Products</a>
+      <a routerLink="/cart">Cart</a>
+    </div>
+  </nav>
+
+  <div class="orders-content">
+    <h1>My Orders</h1>
+
+    <div *ngIf="loading" class="loading">Loading orders...</div>
+
+    <div *ngIf="!loading && errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="!loading && orders.length > 0" class="orders-list">
+      <div *ngFor="let order of orders" class="order-card">
+        <div class="order-header">
+          <div class="order-number">
+            <h3>Order #{{ order.orderNumber }}</h3>
+            <span class="order-date">{{ formatDate(order.createdDate) }}</span>
+          </div>
+          <span class="order-status" [ngClass]="getOrderStatusClass(order.orderStatus)">
+            {{ order.orderStatus }}
+          </span>
+        </div>
+
+        <div class="order-items-preview">
+          <div *ngFor="let item of order.orderItems.slice(0, 3)" class="item-preview">
+            <span>{{ item.productName }} x{{ item.quantity }}</span>
+          </div>
+          <div *ngIf="order.orderItems.length > 3" class="more-items">
+            +{{ order.orderItems.length - 3 }} more items
+          </div>
+        </div>
+
+        <div class="order-footer">
+          <div class="order-total">
+            <span>Total:</span>
+            <span>${{ order.totalAmount.toFixed(2) }}</span>
+          </div>
+          <button (click)="viewOrderDetails(order.orderId)" class="view-details-btn">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && orders.length === 0" class="no-orders">
+      <p>You haven't placed any orders yet.</p>
+      <button routerLink="/products" class="shop-btn">Start Shopping</button>
+    </div>
+  </div>
+</div>

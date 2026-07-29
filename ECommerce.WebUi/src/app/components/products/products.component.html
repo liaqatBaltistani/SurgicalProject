@@ -1,0 +1,49 @@
+<div class="products-container">
+  <nav class="navbar">
+    <div class="nav-brand">ECommerce</div>
+    <div class="nav-links">
+      <a routerLink="/home">Home</a>
+      <a routerLink="/cart">Cart</a>
+      <a routerLink="/orders">My Orders</a>
+    </div>
+  </nav>
+
+  <div class="products-header">
+    <h1>Products</h1>
+    <div class="search-bar">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="searchProducts()"
+        placeholder="Search products..."
+      />
+      <button (click)="searchProducts()">Search</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading products...</div>
+
+  <div *ngIf="!loading" class="products-grid">
+    <div *ngFor="let product of filteredProducts" class="product-card">
+      <div class="product-image">
+        <img [src]="product.imageUrl || 'https://via.placeholder.com/300x200'" [alt]="product.name" />
+      </div>
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <div class="product-price">
+          <span *ngIf="product.discountedPrice" class="original-price">${{ product.price.toFixed(2) }}</span>
+          <span class="current-price">${{ (product.discountedPrice || product.price).toFixed(2) }}</span>
+        </div>
+        <div class="product-actions">
+          <button (click)="viewProduct(product.productId)" class="view-btn">View Details</button>
+          <button (click)="addToCart(product.productId)" class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && filteredProducts.length === 0" class="no-products">
+    <p>No products found.</p>
+  </div>
+</div>

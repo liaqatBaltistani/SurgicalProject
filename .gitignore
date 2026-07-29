@@ -1,0 +1,13 @@
+.vs/ECommerce/config/applicationhost.config
+*.db
+.vs/
+ECommerce.Api/bin/
+ECommerce.Api/obj/
+ECommerce.Application/obj/Debug/
+ECommerce.Application/obj/Release/
+ECommerce.Domain/bin/Debug/net9.0/
+ECommerce.Domain/bin/Release/
+ECommerce.Domain/obj/
+ECommerce.Infrastructure/bin/
+ECommerce.Infrastructure/obj/
+ECommerce.Application/obj/

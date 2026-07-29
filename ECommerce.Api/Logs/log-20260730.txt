@@ -1,0 +1,26 @@
+2026-07-30 00:12:35.884 +05:00 [WRN] Failed to determine the https port for redirect.
+2026-07-30 00:12:35.989 +05:00 [INF] HTTP GET /_vs/browserLink responded 404 in 101.6496 ms
+2026-07-30 00:12:35.989 +05:00 [INF] HTTP GET /_framework/aspnetcore-browser-refresh.js responded 404 in 123.8443 ms
+2026-07-30 00:13:25.990 +05:00 [INF] HTTP POST /api/Auth/register responded 400 in 405.0563 ms
+2026-07-30 00:13:42.108 +05:00 [INF] HTTP POST /api/Auth/register responded 200 in 2250.5933 ms
+2026-07-30 00:14:22.106 +05:00 [INF] HTTP POST /api/Auth/login responded 200 in 499.1667 ms
+2026-07-30 00:18:53.534 +05:00 [INF] HTTP POST /api/Product responded 400 in 135.3361 ms
+2026-07-30 00:24:32.225 +05:00 [INF] HTTP GET /_framework/aspnetcore-browser-refresh.js responded 404 in 0.7283 ms
+2026-07-30 00:24:32.231 +05:00 [INF] HTTP GET /_vs/browserLink responded 404 in 0.2808 ms
+2026-07-30 00:24:59.238 +05:00 [INF] HTTP POST /api/Auth/register responded 200 in 242.0713 ms
+2026-07-30 00:27:15.150 +05:00 [INF] HTTP POST /api/Auth/login responded 200 in 195.2194 ms
+2026-07-30 00:28:51.699 +05:00 [INF] HTTP POST /api/Category responded 400 in 44.3235 ms
+2026-07-30 00:29:21.326 +05:00 [INF] HTTP GET /api/Category responded 200 in 35.5555 ms
+2026-07-30 00:33:42.111 +05:00 [INF] HTTP GET /api/Category responded 200 in 36.8615 ms
+2026-07-30 00:36:00.353 +05:00 [INF] HTTP POST /api/Product responded 201 in 97.4910 ms
+2026-07-30 00:36:30.434 +05:00 [INF] HTTP GET /api/Product responded 200 in 35.7106 ms
+2026-07-30 00:38:31.243 +05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-07-30 00:38:31.247 +05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-07-30 00:38:31.272 +05:00 [INF] HTTP GET /api/Product/search responded 200 in 120.7766 ms
+2026-07-30 00:38:51.581 +05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-07-30 00:38:51.584 +05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-07-30 00:38:51.602 +05:00 [INF] HTTP GET /api/Product/search responded 200 in 44.8041 ms
+2026-07-30 00:38:58.190 +05:00 [INF] HTTP GET /api/Product/search responded 200 in 4.5614 ms
+2026-07-30 00:39:02.539 +05:00 [INF] HTTP GET /api/Product/search responded 200 in 4.5331 ms
+2026-07-30 00:39:19.274 +05:00 [INF] HTTP GET /api/Product/search responded 200 in 13.1987 ms
+2026-07-30 00:39:29.394 +05:00 [INF] HTTP GET /api/Product/search responded 200 in 4.0212 ms
