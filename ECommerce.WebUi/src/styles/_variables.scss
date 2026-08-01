@@ -1,0 +1,229 @@
+// ============================================
+// Healthcare Color Theme
+// ============================================
+
+// Primary Colors
+$color-primary: #0D47A1;          // Deep Blue
+$color-primary-light: #5472d3;
+$color-primary-dark: #002171;
+$color-primary-contrast: #FFFFFF;
+
+// Secondary Colors
+$color-secondary: #FFFFFF;         // White
+$color-secondary-light: #FFFFFF;
+$color-secondary-dark: #e0e0e0;
+$color-secondary-contrast: #000000;
+
+// Accent Colors
+$color-accent: #009688;            // Teal
+$color-accent-light: #5cdbcf;
+$color-accent-dark: #00695c;
+$color-accent-contrast: #FFFFFF;
+
+// Semantic Colors
+$color-success: #4CAF50;           // Green
+$color-success-light: #81c784;
+$color-success-dark: #388e3c;
+$color-success-contrast: #FFFFFF;
+
+$color-error: #F44336;             // Red
+$color-error-light: #e57373;
+$color-error-dark: #d32f2f;
+$color-error-contrast: #FFFFFF;
+
+$color-warning: #FF9800;           // Orange
+$color-warning-light: #ffb74d;
+$color-warning-dark: #f57c00;
+$color-warning-contrast: #FFFFFF;
+
+$color-info: #2196F3;              // Blue
+$color-info-light: #64b5f6;
+$color-info-dark: #1976d2;
+$color-info-contrast: #FFFFFF;
+
+// Neutral Colors
+$color-background: #F5F5F5;        // Very Light Gray
+$color-background-dark: #e0e0e0;
+$color-surface: #FFFFFF;           // White
+$color-surface-variant: #f8f9fa;
+
+$color-text-primary: #212121;
+$color-text-secondary: #757575;
+$color-text-hint: #9e9e9e;
+$color-text-disabled: #bdbdbd;
+
+$color-divider: #e0e0e0;
+$color-border: #e0e0e0;
+$color-border-light: #f0f0f0;
+
+// Card Colors
+$color-card: #FFFFFF;
+$color-card-hover: #fafafa;
+$color-card-shadow: rgba(0, 0, 0, 0.1);
+$color-card-shadow-hover: rgba(0, 0, 0, 0.15);
+
+// ============================================
+// Typography
+// ============================================
+
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+$font-size-xs: 0.75rem;      // 12px
+$font-size-sm: 0.875rem;     // 14px
+$font-size-base: 1rem;       // 16px
+$font-size-lg: 1.125rem;     // 18px
+$font-size-xl: 1.25rem;      // 20px
+$font-size-2xl: 1.5rem;      // 24px
+$font-size-3xl: 1.875rem;    // 30px
+$font-size-4xl: 2.25rem;     // 36px
+$font-size-5xl: 3rem;        // 48px
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+$letter-spacing-tight: -0.025em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.025em;
+
+// ============================================
+// Spacing
+// ============================================
+
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+$spacing-4xl: 6rem;     // 96px
+
+// ============================================
+// Border Radius
+// ============================================
+
+$border-radius-none: 0;
+$border-radius-sm: 0.25rem;    // 4px
+$border-radius-md: 0.5rem;     // 8px
+$border-radius-lg: 0.75rem;    // 12px
+$border-radius-xl: 1rem;        // 16px
+$border-radius-2xl: 1.5rem;     // 24px
+$border-radius-full: 9999px;
+
+// ============================================
+// Shadows
+// ============================================
+
+$shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+
+$shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+$shadow-drawer: 0 0 50px rgba(0, 0, 0, 0.25);
+
+// ============================================
+// Transitions
+// ============================================
+
+$transition-fast: 150ms;
+$transition-base: 250ms;
+$transition-slow: 350ms;
+$transition-slower: 500ms;
+
+$transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-ease-in: cubic-bezier(0.4, 0, 1, 1);
+$transition-ease-out: cubic-bezier(0, 0, 0.2, 1);
+$transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+// ============================================
+// Z-Index Scale
+// ============================================
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+$z-index-toast: 1080;
+$z-index-drawer: 1090;
+
+// ============================================
+// Breakpoints
+// ============================================
+
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// Container widths
+$container-sm: 540px;
+$container-md: 720px;
+$container-lg: 960px;
+$container-xl: 1140px;
+$container-xxl: 1320px;
+
+// ============================================
+// Grid
+// ============================================
+
+$grid-columns: 12;
+$grid-gutter: 1.5rem;
+$grid-gutter-sm: 1rem;
+$grid-gutter-lg: 2rem;
+
+// ============================================
+// Component Specific
+// ============================================
+
+// Navbar
+$navbar-height: 64px;
+$navbar-height-scrolled: 56px;
+$navbar-background: #FFFFFF;
+$navbar-border: #e0e0e0;
+
+// Sidebar/Drawer
+$drawer-width: 280px;
+$drawer-width-lg: 320px;
+
+// Button
+$button-height-sm: 32px;
+$button-height-md: 40px;
+$button-height-lg: 48px;
+
+// Input
+$input-height-sm: 32px;
+$input-height-md: 40px;
+$input-height-lg: 48px;
+
+// Card
+$card-padding: 1.5rem;
+$card-padding-sm: 1rem;
+$card-padding-lg: 2rem;
+
+// ============================================
+// Animation
+// ============================================
+
+$animation-duration-fast: 150ms;
+$animation-duration-base: 250ms;
+$animation-duration-slow: 350ms;
+
+$animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

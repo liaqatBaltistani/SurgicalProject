@@ -14,6 +14,8 @@ export interface Product {
   categoryName: string;
   discountedPrice?: number;
   discountName?: string;
+  sku?: string;
+  specifications?: { label: string; value: string }[];
 }
 
 export interface ProductSearch {

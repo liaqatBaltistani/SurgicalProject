@@ -1,0 +1,13 @@
+<button
+  [type]="type()"
+  [disabled]="isDisabled()"
+  [class]="getButtonClasses()"
+  [attr.aria-disabled]="isDisabled()"
+  (click)="handleClick($event)">
+  
+  @if (loading()) {
+    <span class="spinner"></span>
+  }
+  
+  <ng-content></ng-content>
+</button>

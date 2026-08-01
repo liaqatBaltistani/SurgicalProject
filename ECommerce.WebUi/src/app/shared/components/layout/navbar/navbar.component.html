@@ -1,0 +1,122 @@
+<header class="navbar" [class.scrolled]="isScrolled()" @shrink>
+  <div class="container">
+    <div class="navbar-content">
+      <!-- Logo -->
+      <a routerLink="/home" class="navbar-logo">
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5"></path>
+          <path d="M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="logo-text">SurgicalSupply</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="navbar-nav desktop-nav">
+        @for (link of navigationLinks; track link.path) {
+          <a [routerLink]="link.path" class="nav-link" routerLinkActive="active">{{ link.label }}</a>
+        }
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="navbar-actions">
+        <!-- Search -->
+        <button class="action-button search-button" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+
+        <!-- Wishlist -->
+        <button class="action-button wishlist-button" (click)="navigateToWishlist()" aria-label="Wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
+
+        <!-- Cart -->
+        <button class="action-button cart-button" (click)="navigateToCart()" aria-label="Shopping cart">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          @if (cartItemCount() > 0) {
+            <span class="cart-badge">{{ cartItemCount() }}</span>
+          }
+        </button>
+
+        <!-- User Profile -->
+        @if (isLoggedIn()) {
+          <div class="user-menu">
+            <button class="action-button user-button" aria-label="User profile">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+            <div class="user-dropdown">
+              <div class="user-info">
+                <span class="user-name">{{ currentUser()?.firstName }} {{ currentUser()?.lastName }}</span>
+                <span class="user-email">{{ currentUser()?.email }}</span>
+              </div>
+              <div class="user-actions">
+                <button class="dropdown-item" (click)="logout()">Logout</button>
+              </div>
+            </div>
+          </div>
+        } @else {
+          <a routerLink="/login" class="action-button login-button">Login</a>
+        }
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+@if (isMobileMenuOpen()) {
+  <div class="mobile-drawer-backdrop" (click)="closeMobileMenu()"></div>
+  <aside class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <a routerLink="/home" class="navbar-logo" (click)="closeMobileMenu()">
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5"></path>
+          <path d="M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="logo-text">SurgicalSupply</span>
+      </a>
+      <button class="drawer-close" (click)="closeMobileMenu()" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav">
+      @for (link of navigationLinks; track link.path) {
+        <a [routerLink]="link.path" class="mobile-nav-link" (click)="closeMobileMenu()">{{ link.label }}</a>
+      }
+    </nav>
+    <div class="mobile-drawer-footer">
+      @if (isLoggedIn()) {
+        <div class="mobile-user-info">
+          <span class="user-name">{{ currentUser()?.firstName }} {{ currentUser()?.lastName }}</span>
+          <button class="mobile-logout" (click)="logout()">Logout</button>
+        </div>
+      } @else {
+        <a routerLink="/login" class="mobile-login" (click)="closeMobileMenu()">Login</a>
+      }
+    </div>
+  </aside>
+}

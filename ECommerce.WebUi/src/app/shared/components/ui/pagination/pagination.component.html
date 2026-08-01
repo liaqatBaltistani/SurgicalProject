@@ -1,0 +1,50 @@
+<div class="pagination">
+  <div class="pagination-info">
+    <span>Page {{ currentPage() }} of {{ totalPages() }}</span>
+    
+    @if (showPageSizeSelector()) {
+      <select class="page-size-selector" (change)="onPageSizeChange($event)">
+        @for (size of pageSizeOptions(); track size) {
+          <option [value]="size" [selected]="size === pageSize()">{{ size }} per page</option>
+        }
+      </select>
+    }
+  </div>
+
+  <div class="pagination-controls">
+    <button 
+      class="pagination-button" 
+      [disabled]="currentPage() === 1"
+      (click)="onPrevious()"
+      aria-label="Previous page">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    @for (page of pages(); track page) {
+      @if (page === '...') {
+        <span class="pagination-ellipsis">...</span>
+      } @else {
+        <button 
+          class="pagination-button page-number"
+          [class.active]="page === currentPage()"
+          (click)="onPageChange(page)"
+          [attr.aria-label]="'Page ' + page"
+          [attr.aria-current]="page === currentPage() ? 'page' : null">
+          {{ page }}
+        </button>
+      }
+    }
+
+    <button 
+      class="pagination-button" 
+      [disabled]="currentPage() === totalPages()"
+      (click)="onNext()"
+      aria-label="Next page">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</div>

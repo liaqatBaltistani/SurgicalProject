@@ -1,0 +1,322 @@
+@use '../../../../../styles/_variables' as *;
+@use '../../../../../styles/_mixins' as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $navbar-height;
+  background-color: $navbar-background;
+  border-bottom: 1px solid $navbar-border;
+  z-index: $z-index-sticky;
+  transition: height $transition-base $transition-ease,
+              box-shadow $transition-base $transition-ease;
+
+  &.scrolled {
+    height: $navbar-height-scrolled;
+    box-shadow: $shadow-md;
+  }
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: $spacing-lg;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  text-decoration: none;
+  color: $color-primary;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-text {
+    @include mobile-only {
+      display: none;
+    }
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+
+  .nav-link {
+    @include body-text;
+    color: $color-text-secondary;
+    text-decoration: none;
+    font-weight: $font-weight-medium;
+    transition: color $transition-fast $transition-ease;
+    position: relative;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &.active {
+      color: $color-primary;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: $color-primary;
+      }
+    }
+  }
+}
+
+.desktop-nav {
+  @include mobile-only {
+    display: none;
+  }
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.action-button {
+  @include reset-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-md;
+  color: $color-text-secondary;
+  transition: background-color $transition-fast $transition-ease,
+              color $transition-fast $transition-ease;
+  position: relative;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background-color: $color-background;
+    color: $color-primary;
+  }
+}
+
+.cart-button {
+  .cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: $color-accent;
+    color: $color-accent-contrast;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+  }
+}
+
+.user-menu {
+  position: relative;
+
+  &:hover {
+    .user-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+}
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 250px;
+  background-color: $color-surface;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+  padding: $spacing-md;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all $transition-base $transition-ease;
+  z-index: $z-index-dropdown;
+}
+
+.user-info {
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $spacing-md;
+
+  .user-name {
+    display: block;
+    @include heading-6;
+    margin-bottom: $spacing-xs;
+  }
+
+  .user-email {
+    display: block;
+    @include text-small;
+    color: $color-text-secondary;
+  }
+}
+
+.user-actions {
+  .dropdown-item {
+    @include reset-button;
+    width: 100%;
+    text-align: left;
+    padding: $spacing-sm;
+    border-radius: $border-radius-sm;
+    color: $color-text-primary;
+    font-size: $font-size-sm;
+    transition: background-color $transition-fast $transition-ease;
+
+    &:hover {
+      background-color: $color-background;
+    }
+  }
+}
+
+.login-button {
+  @include button-primary;
+  padding: 0 $spacing-lg;
+  width: auto;
+}
+
+.mobile-menu-toggle {
+  @include desktop-only {
+    display: none;
+  }
+}
+
+.mobile-drawer-backdrop {
+  @include fixed-full;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: $z-index-modal-backdrop;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $drawer-width;
+  background-color: $color-surface;
+  z-index: $z-index-drawer;
+  display: flex;
+  flex-direction: column;
+  animation: drawer-slide-in $transition-base $transition-ease;
+  box-shadow: $shadow-drawer;
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $color-border;
+
+  .navbar-logo {
+    .logo-text {
+      display: block;
+    }
+  }
+}
+
+.drawer-close {
+  @include reset-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: $border-radius-md;
+  color: $color-text-secondary;
+  transition: background-color $transition-fast $transition-ease;
+
+  &:hover {
+    background-color: $color-background;
+    color: $color-text-primary;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.mobile-nav {
+  flex: 1;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.mobile-nav-link {
+  @include body-text;
+  color: $color-text-primary;
+  text-decoration: none;
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
+  transition: background-color $transition-fast $transition-ease;
+
+  &:hover {
+    background-color: $color-background;
+    color: $color-primary;
+  }
+
+  &.active {
+    background-color: rgba($color-primary, 0.1);
+    color: $color-primary;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.mobile-drawer-footer {
+  padding: $spacing-lg;
+  border-top: 1px solid $color-border;
+}
+
+.mobile-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  .user-name {
+    @include heading-6;
+  }
+
+  .mobile-logout {
+    @include button-outline;
+    width: 100%;
+  }
+}
+
+.mobile-login {
+  @include button-primary;
+  width: 100%;
+  text-align: center;
+}

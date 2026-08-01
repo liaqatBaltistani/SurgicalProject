@@ -1,0 +1,67 @@
+@use '../../../../../styles/_variables' as *;
+@use '../../../../../styles/_mixins' as *;
+
+:host {
+  display: inline-block;
+}
+
+button {
+  @include button-base;
+  width: 100%;
+  
+  @if (fullWidth) {
+    width: 100%;
+  }
+
+  &.primary {
+    @include button-primary;
+  }
+
+  &.secondary {
+    @include button-secondary;
+  }
+
+  &.accent {
+    @include button-accent;
+  }
+
+  &.outline {
+    @include button-outline;
+  }
+
+  &.ghost {
+    @include button-ghost;
+  }
+
+  &.sm {
+    @include button-size(sm);
+  }
+
+  &.md {
+    @include button-size(md);
+  }
+
+  &.lg {
+    @include button-size(lg);
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+  }
+}

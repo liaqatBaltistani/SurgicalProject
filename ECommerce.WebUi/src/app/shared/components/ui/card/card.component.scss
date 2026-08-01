@@ -1,0 +1,45 @@
+@use '../../../../../styles/_variables' as *;
+@use '../../../../../styles/_mixins' as *;
+
+.card {
+  background-color: $color-card;
+  border-radius: $border-radius-lg;
+  transition: box-shadow $transition-base $transition-ease,
+              transform $transition-base $transition-ease;
+
+  &.elevation {
+    box-shadow: $shadow-card;
+  }
+
+  &.hoverable {
+    &:hover {
+      box-shadow: $shadow-card-hover;
+      transform: translateY(-2px);
+    }
+  }
+
+  &.clickable {
+    cursor: pointer;
+    
+    &:hover {
+      box-shadow: $shadow-card-hover;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &.padding-sm {
+    padding: $card-padding-sm;
+  }
+
+  &.padding-md {
+    padding: $card-padding;
+  }
+
+  &.padding-lg {
+    padding: $card-padding-lg;
+  }
+}

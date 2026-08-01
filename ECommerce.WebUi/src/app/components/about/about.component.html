@@ -1,0 +1,110 @@
+<div class="about-page" @fadeIn>
+  <div class="container">
+    <!-- Breadcrumb -->
+    <app-breadcrumb [items]="[{ label: 'Home', url: '/home' }, { label: 'About', url: '/about' }]"></app-breadcrumb>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1 class="hero-title">About Surgical Supplies</h1>
+      <p class="hero-subtitle">Your trusted partner in premium medical equipment and surgical supplies</p>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section section">
+      <div class="section-content">
+        <h2 class="section-title">Our Mission</h2>
+        <p class="section-text">
+          At Surgical Supplies, we are dedicated to providing healthcare professionals with the highest quality surgical instruments and medical equipment. Our mission is to ensure that every medical facility has access to reliable, precision-engineered tools that enhance patient care and surgical outcomes.
+        </p>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section section">
+      <h2 class="section-title">Our Core Values</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="value-title">Quality</h3>
+          <p class="value-description">We source only the finest materials and maintain strict quality control standards.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="value-title">Trust</h3>
+          <p class="value-description">Building lasting relationships with healthcare providers through reliability and integrity.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h3 class="value-title">Innovation</h3>
+          <p class="value-description">Continuously improving our products with the latest medical technology advancements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section section">
+      <div class="story-layout">
+        <div class="story-content">
+          <h2 class="section-title">Our Story</h2>
+          <p class="section-text">
+            Founded in 2010, Surgical Supplies has grown from a small family business to a leading supplier of medical equipment. Our journey began with a simple goal: to provide healthcare professionals with tools they can trust.
+          </p>
+          <p class="section-text">
+            Today, we serve hospitals, clinics, and surgical centers across the country. Our team of experts works tirelessly to ensure that every product meets the highest standards of quality and precision.
+          </p>
+          <div class="story-actions">
+            <app-button variant="primary" (clicked)="navigateToProducts()">Explore Our Products</app-button>
+            <app-button variant="outline" (clicked)="navigateToContact()">Contact Us</app-button>
+          </div>
+        </div>
+        <div class="story-image">
+          <div class="image-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section section">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">14+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5000+</div>
+          <div class="stat-label">Products Available</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">Healthcare Partners</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">99%</div>
+          <div class="stat-label">Customer Satisfaction</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

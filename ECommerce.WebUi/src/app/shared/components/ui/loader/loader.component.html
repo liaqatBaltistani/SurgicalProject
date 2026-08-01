@@ -1,0 +1,32 @@
+@if (fullScreen()) {
+  <div class="loader-overlay">
+    <div class="loader-content">
+      @if (type() === 'spinner') {
+        <div class="spinner" [class.sm]="size() === 'sm'" [class.lg]="size() === 'lg'"></div>
+      } @else if (type() === 'skeleton') {
+        <div class="skeleton"></div>
+      } @else if (type() === 'dots') {
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      }
+      @if (text()) {
+        <p class="loader-text">{{ text() }}</p>
+      }
+    </div>
+  </div>
+} @else {
+  @if (type() === 'spinner') {
+    <div class="spinner" [class.sm]="size() === 'sm'" [class.lg]="size() === 'lg'"></div>
+  } @else if (type() === 'skeleton') {
+    <div class="skeleton"></div>
+  } @else if (type() === 'dots') {
+    <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+}
