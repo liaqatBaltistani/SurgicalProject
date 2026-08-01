@@ -1,72 +1,169 @@
-<div class="product-details-container">
-  <nav class="navbar">
-    <div class="nav-brand">ECommerce</div>
-    <div class="nav-links">
-      <a routerLink="/home">Home</a>
-      <a routerLink="/products">Products</a>
-      <a routerLink="/cart">Cart</a>
-      <a routerLink="/orders">My Orders</a>
-      <button (click)="goBack()" class="back-btn">← Back</button>
-    </div>
-  </nav>
-
-  <div *ngIf="loading" class="loading">Loading product details...</div>
-
-  <div *ngIf="error" class="error">{{ error }}</div>
-
-  <div *ngIf="!loading && !error && product" class="product-details">
-    <div class="product-image-section">
-      <div class="main-image">
-        <img [src]="product.imageUrl || 'https://via.placeholder.com/500'" [alt]="product.name" />
+<div class="product-details-page" @fadeIn>
+  <div class="container">
+    @if (loading()) {
+      <div class="loading-state">
+        <app-loader type="skeleton" size="lg"></app-loader>
       </div>
-    </div>
-
-    <div class="product-info-section">
-      <h1 class="product-name">{{ product.name }}</h1>
-      <div class="product-category">
-        <span class="category-label">Category:</span>
-        <span class="category-name">{{ product.categoryName }}</span>
+    } @else if (error()) {
+      <div class="error-state">
+        <h3>Error</h3>
+        <p>{{ error() }}</p>
+        <app-button variant="primary" (clicked)="router.navigate(['/products'])">Back to Products</app-button>
       </div>
-      
-      <div class="product-price">
-        <span class="current-price">${{ product.price.toFixed(2) }}</span>
-        <span *ngIf="product.originalPrice && product.originalPrice > product.price" class="original-price">
-          ${{ product.originalPrice.toFixed(2) }}
-        </span>
-      </div>
+    } @else if (product()) {
+      <div class="product-details-layout">
+        <!-- Product Image Gallery -->
+        <div class="product-gallery">
+          <div class="main-image-container">
+            <img 
+              [src]="getSelectedImage()" 
+              [alt]="product()!.name"
+              class="main-image"
+              (mousemove)="onImageMouseMove($event)"
+              (mouseenter)="showZoom.set(true)"
+              (mouseleave)="showZoom.set(false)"
+              (click)="toggleZoom()"
+            />
+            @if (showZoom()) {
+              <div 
+                class="zoom-lens"
+                [style.left.px]="zoomPosition().x"
+                [style.top.px]="zoomPosition().y">
+              </div>
+            }
+          </div>
+          
+          @if (getImages().length > 1) {
+            <div class="thumbnail-list">
+              @for (image of getImages(); track $index) {
+                <div 
+                  class="thumbnail"
+                  [class.active]="$index === selectedImageIndex()"
+                  (click)="selectImage($index)">
+                  <img [src]="image" [alt]="'Thumbnail ' + ($index + 1)" />
+                </div>
+              }
+            </div>
+          }
+        </div>
 
-      <div class="product-stock">
-        <span [class.in-stock]="product.stockQuantity > 0" [class.out-of-stock]="product.stockQuantity === 0">
-          {{ product.stockQuantity > 0 ? `In Stock (${product.stockQuantity} available)` : 'Out of Stock' }}
-        </span>
-      </div>
+        <!-- Product Info -->
+        <div class="product-info">
+          <!-- Breadcrumb -->
+          <app-breadcrumb [items]="[{ label: 'Home', url: '/home' }, { label: 'Products', url: '/products' }, { label: product()!.name, url: '' }]"></app-breadcrumb>
 
-      <div class="product-description">
-        <h2>Description</h2>
-        <p>{{ product.description }}</p>
-      </div>
+          <!-- Product Name -->
+          <h1 class="product-name">{{ product()!.name }}</h1>
 
-      <div *ngIf="product.specifications" class="product-specifications">
-        <h2>Specifications</h2>
-        <div class="spec-item" *ngFor="let spec of parseSpecifications(product.specifications)">
-          <span class="spec-label">{{ spec.label }}:</span>
-          <span class="spec-value">{{ spec.value }}</span>
+          <!-- Category -->
+          <div class="product-category">
+            <span class="category-label">Category:</span>
+            <span class="category-name">{{ product()!.categoryName }}</span>
+          </div>
+
+          <!-- Price -->
+          <div class="product-price">
+            @if (getOriginalPrice()) {
+              <span class="original-price">${{ getOriginalPrice()?.toFixed(2) }}</span>
+            }
+            <span class="current-price">${{ getDisplayPrice().toFixed(2) }}</span>
+            @if (getDiscountPercentage() > 0) {
+              <span class="discount-badge">-{{ getDiscountPercentage() }}%</span>
+            }
+          </div>
+
+          <!-- Stock Status -->
+          <div class="stock-status" [class.in-stock]="isInStock()" [class.out-of-stock]="!isInStock()">
+            <span class="stock-indicator"></span>
+            {{ getStockStatus() }}
+          </div>
+
+          <!-- Description -->
+          <div class="product-description">
+            <h2>Description</h2>
+            <p>{{ product()!.description }}</p>
+          </div>
+
+          <!-- Specifications -->
+          @if (product()?.specifications?.length) {
+            <div class="product-specifications">
+              <h2>Specifications</h2>
+              <div class="spec-list">
+                @for (spec of product()!.specifications!; track spec.label) {
+                  <div class="spec-item">
+                    <span class="spec-label">{{ spec.label }}:</span>
+                    <span class="spec-value">{{ spec.value }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          <!-- Action Buttons -->
+          <div class="product-actions">
+            <button class="action-button" [class.active]="isInWishlist()" (click)="toggleWishlist()" aria-label="Add to wishlist">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+              Wishlist
+            </button>
+            <button class="action-button" [class.active]="isInComparison()" (click)="toggleComparison()" aria-label="Add to compare">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              Compare
+            </button>
+          </div>
+
+          <!-- Quantity & Add to Cart -->
+          <div class="add-to-cart-section">
+            <div class="quantity-selector">
+              <button class="quantity-button" (click)="decreaseQuantity()" [disabled]="quantity() <= 1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+              <input type="number" class="quantity-input" [value]="quantity()" min="1" [max]="product()!.stockQuantity" readonly />
+              <button class="quantity-button" (click)="increaseQuantity()" [disabled]="quantity() >= product()!.stockQuantity">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+            </div>
+            <app-button 
+              variant="primary" 
+              size="lg" 
+              [fullWidth]="true"
+              [disabled]="!isInStock()"
+              (clicked)="addToCart()">
+              @if (isInStock()) {
+                Add to Cart
+              } @else {
+                Out of Stock
+              }
+            </app-button>
+          </div>
         </div>
       </div>
 
-      <div class="product-actions">
-        <div class="quantity-selector">
-          <button (click)="decreaseQuantity()" [disabled]="quantity <= 1">-</button>
-          <input [(ngModel)]="quantity" type="number" min="1" [max]="product.stockQuantity" />
-          <button (click)="increaseQuantity()" [disabled]="quantity >= product.stockQuantity">+</button>
-        </div>
-        <button 
-          (click)="addToCart()" 
-          class="add-to-cart-btn"
-          [disabled]="product.stockQuantity === 0 || quantity < 1">
-          {{ product.stockQuantity === 0 ? 'Out of Stock' : 'Add to Cart' }}
-        </button>
-      </div>
-    </div>
+      <!-- Related Products -->
+      @if (relatedProducts().length > 0) {
+        <section class="related-products section">
+          <h2 class="section-title">Related Products</h2>
+          <div class="products-grid">
+            @for (relatedProduct of relatedProducts(); track relatedProduct.productId) {
+              <app-product-card 
+                [product]="relatedProduct"
+                (addedToCart)="onAddToCart($event)"
+                (quickView)="onQuickView($event)">
+              </app-product-card>
+            }
+          </div>
+        </section>
+      }
+    }
   </div>
 </div>

@@ -1,0 +1,143 @@
+<div class="contact-page" @fadeIn>
+  <div class="container">
+    <!-- Breadcrumb -->
+    <app-breadcrumb [items]="[{ label: 'Home', url: '/home' }, { label: 'Contact', url: '/contact' }]"></app-breadcrumb>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1 class="hero-title">Contact Us</h1>
+      <p class="hero-subtitle">We're here to help. Get in touch with our team.</p>
+    </section>
+
+    <div class="contact-layout">
+      <!-- Contact Form -->
+      <div class="contact-form-section">
+        <div class="form-card">
+          <h2 class="form-title">Send us a Message</h2>
+          <form (ngSubmit)="submitForm()">
+            <div class="form-group">
+              <label for="name" class="form-label">Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                class="form-input" 
+                [(ngModel)]="name" 
+                required
+                placeholder="Your full name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                class="form-input" 
+                [(ngModel)]="email" 
+                required
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input 
+                type="text" 
+                id="subject" 
+                class="form-input" 
+                [(ngModel)]="subject" 
+                required
+                placeholder="How can we help?"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea 
+                id="message" 
+                class="form-textarea" 
+                [(ngModel)]="message" 
+                required
+                rows="5"
+                placeholder="Tell us more about your inquiry..."
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <app-button variant="primary" size="lg" [fullWidth]="true" type="submit">Send Message</app-button>
+              <app-button variant="ghost" size="md" [fullWidth]="true" (clicked)="resetForm()">Clear Form</app-button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info-section">
+        <div class="info-card">
+          <h2 class="info-title">Contact Information</h2>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h3 class="info-label">Address</h3>
+              <p class="info-value">123 Medical Center Drive<br>Healthcare City, HC 12345</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h3 class="info-label">Phone</h3>
+              <p class="info-value">+1 (555) 123-4567</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h3 class="info-label">Email</h3>
+              <p class="info-value">info@surgicalsupplies.com</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h3 class="info-label">Business Hours</h3>
+              <p class="info-value">Mon - Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 4:00 PM<br>Sun: Closed</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links-card">
+          <h2 class="info-title">Quick Links</h2>
+          <div class="quick-links">
+            <a routerLink="/about" class="quick-link">About Us</a>
+            <a routerLink="/products" class="quick-link">Our Products</a>
+            <a routerLink="/cart" class="quick-link">Shopping Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

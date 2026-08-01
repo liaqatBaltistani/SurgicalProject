@@ -1,50 +1,121 @@
-<div class="home-container">
-  <nav class="navbar">
-    <div class="nav-brand">ECommerce</div>
-    <div class="nav-links">
-      <a href="/products" routerLink="/products">Products</a>
-      <a href="/cart"  routerLink="/cart">Cart</a>
-      <a href="/orders"  routerLink="/orders">My Orders</a>
-      <a href="/admin"  *ngIf="currentUser?.role === 'admin'" routerLink="/admin" class="admin-link">Admin</a>
-      <button (click)="logout()" class="logout-btn">Logout</button>
-    </div>
-  </nav>
-
-  <div class="welcome-section">
-    <h1>Welcome, {{ currentUser?.firstName || 'Guest' }}!</h1>
-    <p *ngIf="currentUser">You are logged in as {{ currentUser?.email }}</p>
-    <p *ngIf="!currentUser">Browse our products and start shopping</p>
-  </div>
-
-  <div class="products-header">
-    <h1>Our Products</h1>
-    <div class="search-bar">
-      <input [(ngModel)]="searchQuery" (input)="searchProducts()" placeholder="Search products..." />
-      <button (click)="searchProducts()">Search</button>
-    </div>
-  </div>
-
-  <div *ngIf="loading" class="loading">Loading products...</div>
-
-  <div *ngIf="!loading" class="products-grid">
-    <div *ngFor="let product of filteredProducts" class="product-card" (click)="viewProductDetails(product.productId)">
-      <div class="product-image">
-        <img [src]="product.imageUrl || 'https://via.placeholder.com/200'" [alt]="product.name" />
-      </div>
-      <div class="product-info">
-        <h3>{{ product.name }}</h3>
-        <p class="product-description">{{ product.description }}</p>
-        <div class="product-price">
-          <span class="current-price">${{ product.price.toFixed(2) }}</span>
-        </div>
-        <div class="product-actions">
-          <button (click)="addToCart(product.productId, $event)" class="add-btn">Add to Cart</button>
+<div class="home-page" @fadeIn>
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Premium Medical Supplies for Healthcare Professionals</h1>
+        <p class="hero-description">Discover high-quality surgical instruments and medical equipment trusted by healthcare providers worldwide.</p>
+        <div class="hero-actions">
+          <app-button variant="primary" size="lg" (clicked)="navigateToProducts()">Shop Now</app-button>
+          <app-button variant="secondary" size="lg" (clicked)="navigateToProducts()">Browse Products</app-button>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div *ngIf="!loading && filteredProducts.length === 0" class="no-products">
-    No products found matching your search.
-  </div>
+  <!-- Product Search -->
+  <section class="search-section">
+    <div class="container">
+      <div class="search-wrapper">
+        <app-search-bar 
+          [value]="searchQuery()" 
+          placeholder="Search for products, categories, or brands..."
+          size="lg"
+          (searched)="onSearch($event)"
+          (cleared)="onClearSearch()">
+        </app-search-bar>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results -->
+  @if (isSearching()) {
+    <section class="search-results-section">
+      <div class="container">
+        <h2 class="section-title">Search Results</h2>
+        @if (searchResults().length > 0) {
+          <div class="products-grid">
+            @for (product of searchResults(); track product.productId) {
+              <app-product-card 
+                [product]="product"
+                (addedToCart)="onAddToCart($event)"
+                (quickView)="onQuickView($event)">
+              </app-product-card>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <h3>No products found</h3>
+            <p>Try adjusting your search terms or browse our categories.</p>
+          </div>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- Categories Section -->
+  @if (!isSearching()) {
+    <section class="categories-section section">
+      <div class="container">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="categories-grid">
+          @for (category of categories(); track category.id) {
+            <div class="category-card" (click)="navigateToCategory(category.id)">
+              <div class="category-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 8v8"></path>
+                  <path d="M8 12h8"></path>
+                </svg>
+              </div>
+              <h3 class="category-name">{{ category.name }}</h3>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
+  <!-- Featured Products -->
+  @if (!isSearching()) {
+    <section class="featured-products section">
+      <div class="container">
+        <h2 class="section-title">Featured Products</h2>
+        
+        @if (loading()) {
+          <div class="loading-state">
+            <app-loader type="skeleton" size="lg"></app-loader>
+          </div>
+        } @else if (featuredProducts().length > 0) {
+          <div class="products-grid">
+            @for (product of featuredProducts(); track product.productId) {
+              <app-product-card 
+                [product]="product"
+                (addedToCart)="onAddToCart($event)"
+                (quickView)="onQuickView($event)">
+              </app-product-card>
+            }
+          </div>
+          
+          <div class="view-all-container">
+            <app-button variant="outline" size="lg" (clicked)="navigateToProducts()">View All Products</app-button>
+          </div>
+        } @else {
+          <div class="empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <h3>No products available</h3>
+            <p>Check back later for new arrivals.</p>
+          </div>
+        }
+      </div>
+    </section>
+  }
 </div>

@@ -1,0 +1,263 @@
+@use '../../../../styles/_variables' as *;
+@use '../../../../styles/_mixins' as *;
+
+.cart-drawer-backdrop {
+  @include fixed-full;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: $z-index-modal-backdrop;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: $drawer-width;
+  background-color: $color-surface;
+  z-index: $z-index-drawer;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $shadow-drawer;
+
+  @include mobile-only {
+    width: 100%;
+  }
+}
+
+.cart-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $color-border;
+}
+
+.cart-title {
+  @include heading-4;
+  margin: 0;
+}
+
+.close-button {
+  @include reset-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: $border-radius-md;
+  color: $color-text-secondary;
+  transition: background-color $transition-fast $transition-ease;
+
+  &:hover {
+    background-color: $color-background;
+    color: $color-text-primary;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.cart-loading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-md;
+  @include scrollbar;
+}
+
+.cart-item {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
+  background-color: $color-background;
+  margin-bottom: $spacing-sm;
+}
+
+.item-image {
+  width: 80px;
+  height: 80px;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: $color-surface;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-placeholder {
+    @include flex-center;
+    width: 100%;
+    height: 100%;
+    color: $color-text-hint;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.item-name {
+  @include heading-6;
+  margin: 0;
+  @include truncate(2);
+}
+
+.item-price {
+  @include body-text;
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}
+
+.item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  align-items: flex-end;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-sm;
+  overflow: hidden;
+}
+
+.quantity-button {
+  @include reset-button;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-surface;
+  color: $color-text-primary;
+  transition: background-color $transition-fast $transition-ease;
+
+  &:hover:not(:disabled) {
+    background-color: $color-background;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.quantity-value {
+  width: 32px;
+  text-align: center;
+  @include body-text;
+  font-weight: $font-weight-medium;
+}
+
+.remove-button {
+  @include reset-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: $border-radius-sm;
+  color: $color-text-hint;
+  transition: all $transition-fast $transition-ease;
+
+  &:hover {
+    background-color: $color-error;
+    color: $color-error-contrast;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.cart-footer {
+  padding: $spacing-lg;
+  border-top: 1px solid $color-border;
+  background-color: $color-surface;
+}
+
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  @include body-text;
+
+  .label {
+    color: $color-text-secondary;
+  }
+
+  .value {
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+  }
+}
+
+.cart-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.cart-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3xl $spacing-lg;
+  text-align: center;
+  gap: $spacing-lg;
+
+  svg {
+    width: 64px;
+    height: 64px;
+    color: $color-text-hint;
+  }
+
+  h3 {
+    @include heading-4;
+    margin: 0;
+    color: $color-text-primary;
+  }
+
+  p {
+    @include body-text;
+    color: $color-text-secondary;
+    margin: 0;
+  }
+}

@@ -1,0 +1,137 @@
+@use '../../../../../styles/_variables' as *;
+@use '../../../../../styles/_mixins' as *;
+
+.footer {
+  background-color: #1a1a1a;
+  color: $color-secondary-contrast;
+  padding: $spacing-3xl 0 $spacing-lg;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: $spacing-2xl;
+  margin-bottom: $spacing-2xl;
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer-section {
+  .footer-title {
+    @include heading-5;
+    color: $color-secondary-contrast;
+    margin-bottom: $spacing-lg;
+  }
+
+  .footer-description {
+    @include text-small;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: $spacing-md;
+  }
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.footer-link {
+  @include text-small;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color $transition-fast $transition-ease;
+
+  &:hover {
+    color: $color-secondary-contrast;
+  }
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  @include breakpoint(sm) {
+    flex-direction: row;
+  }
+}
+
+.newsletter-input {
+  @include input-base;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: $color-secondary-contrast;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    border-color: $color-accent;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.newsletter-button {
+  @include button-accent;
+  white-space: nowrap;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  padding-top: $spacing-lg;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  @include breakpoint(md) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-md;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: $color-secondary-contrast;
+  transition: background-color $transition-fast $transition-ease,
+              color $transition-fast $transition-ease;
+
+  &:hover {
+    background-color: $color-accent;
+    color: $color-accent-contrast;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.copyright {
+  @include text-small;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}

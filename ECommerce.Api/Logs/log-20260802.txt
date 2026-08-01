@@ -1,0 +1,981 @@
+[2026-08-02 03:49:52 WRN] Failed to determine the https port for redirect.
+[2026-08-02 03:49:54 INF] HTTP GET /_framework/aspnetcore-browser-refresh.js responded 404 in 1683.2079 ms
+[2026-08-02 03:49:54 INF] HTTP GET /_vs/browserLink responded 404 in 1674.7067 ms
+[2026-08-02 04:08:26 INF] HTTP OPTIONS /api/auth/login responded 204 in 4.3137 ms
+[2026-08-02 04:08:30 INF] Executed DbCommand (146ms) [Parameters=[@__loginDto_Email_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[CreatedDate], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[LastName], [u].[ModifiedDate], [u].[PasswordHash], [u].[RoleId], [r].[RoleId], [r].[Name]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[RoleId]
+WHERE [u].[Email] = @__loginDto_Email_0
+[2026-08-02 04:08:31 INF] Executed DbCommand (10ms) [Parameters=[@__user_UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RefreshTokenId], [r].[Created], [r].[CreatedDate], [r].[Expires], [r].[ModifiedDate], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__user_UserId_0 AND [r].[Revoked] IS NULL AND [r].[Expires] > GETUTCDATE()
+[2026-08-02 04:08:31 INF] Executed DbCommand (17ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 256), @p1='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = DateTime2), @p6='?' (DbType = DateTime2), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = DateTime2), @p10='?' (Size = 512), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [RefreshTokens] SET [ReasonRevoked] = @p0, [Revoked] = @p1
+OUTPUT 1
+WHERE [RefreshTokenId] = @p2;
+INSERT INTO [RefreshTokens] ([Created], [CreatedDate], [Expires], [ModifiedDate], [ReasonRevoked], [ReplacedByToken], [Revoked], [Token], [UserId])
+OUTPUT INSERTED.[RefreshTokenId]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+[2026-08-02 04:08:31 INF] HTTP POST /api/auth/login responded 200 in 5207.7192 ms
+[2026-08-02 04:08:31 INF] HTTP OPTIONS /api/product responded 204 in 0.5409 ms
+[2026-08-02 04:08:32 INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:08:32 INF] HTTP GET /api/product responded 200 in 299.1477 ms
+[2026-08-02 04:08:41 INF] HTTP OPTIONS /api/product responded 204 in 0.1676 ms
+[2026-08-02 04:08:41 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:08:41 INF] HTTP GET /api/product responded 200 in 114.4355 ms
+[2026-08-02 04:08:50 INF] HTTP OPTIONS /api/product responded 204 in 0.2004 ms
+[2026-08-02 04:08:50 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:08:50 INF] HTTP GET /api/product responded 200 in 13.1207 ms
+[2026-08-02 04:08:56 INF] HTTP OPTIONS /api/product responded 204 in 0.1274 ms
+[2026-08-02 04:08:56 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:08:56 INF] HTTP GET /api/product responded 200 in 40.3405 ms
+[2026-08-02 04:08:58 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:08:58 INF] HTTP GET /api/product responded 200 in 12.5802 ms
+[2026-08-02 04:08:59 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:08:59 INF] HTTP GET /api/product responded 200 in 11.2781 ms
+[2026-08-02 04:09:02 INF] HTTP OPTIONS /api/product responded 204 in 0.1071 ms
+[2026-08-02 04:09:02 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:09:02 INF] HTTP GET /api/product responded 200 in 7.9305 ms
+[2026-08-02 04:09:09 INF] HTTP OPTIONS /api/product responded 204 in 0.2359 ms
+[2026-08-02 04:09:09 INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:09:09 INF] HTTP GET /api/product responded 200 in 20.9159 ms
+[2026-08-02 04:09:13 INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:09:13 INF] HTTP GET /api/product responded 200 in 19.8966 ms
+[2026-08-02 04:09:21 INF] HTTP OPTIONS /api/cart/add responded 204 in 0.2716 ms
+[2026-08-02 04:09:21 INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-02 04:09:21 INF] Executed DbCommand (16ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-02 04:09:21 INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Carts] ([CreatedDate], [ModifiedDate], [UserId])
+OUTPUT INSERTED.[CartId]
+VALUES (@p0, @p1, @p2);
+[2026-08-02 04:09:21 INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([CartId], [ProductId], [Quantity], [UnitPrice])
+OUTPUT INSERTED.[CartItemId]
+VALUES (@p0, @p1, @p2, @p3);
+[2026-08-02 04:09:21 INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:09:21 INF] HTTP POST /api/cart/add responded 200 in 262.7563 ms
+[2026-08-02 04:12:01 INF] HTTP OPTIONS /api/product responded 204 in 0.3620 ms
+[2026-08-02 04:12:01 INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:12:01 INF] HTTP GET /api/product responded 200 in 28.4561 ms
+[2026-08-02 04:12:12 INF] HTTP OPTIONS /api/product/1 responded 204 in 0.0693 ms
+[2026-08-02 04:12:12 INF] Executed DbCommand (4ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[ProductId] = @__productId_0
+[2026-08-02 04:12:12 INF] HTTP GET /api/product/1 responded 200 in 34.7122 ms
+[2026-08-02 04:12:12 INF] HTTP OPTIONS /api/product/category/1 responded 204 in 0.0761 ms
+[2026-08-02 04:12:12 INF] Executed DbCommand (2ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__categoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-02 04:12:12 INF] Executed DbCommand (4ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[CategoryId] = @__categoryId_0 AND [p].[IsActive] = CAST(1 AS bit)
+[2026-08-02 04:12:12 INF] HTTP GET /api/product/category/1 responded 200 in 49.9898 ms
+[2026-08-02 04:12:23 INF] HTTP OPTIONS /api/cart/add responded 204 in 0.0592 ms
+[2026-08-02 04:12:24 INF] Executed DbCommand (17ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-02 04:12:24 INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-02 04:12:24 INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:12:24 INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:12:24 INF] HTTP POST /api/cart/add responded 200 in 60.1836 ms
+[2026-08-02 04:12:29 INF] HTTP OPTIONS /api/product responded 204 in 0.1043 ms
+[2026-08-02 04:12:29 INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:12:29 INF] HTTP GET /api/product responded 200 in 20.1975 ms
+[2026-08-02 04:17:26 INF] HTTP OPTIONS /api/cart responded 204 in 0.1899 ms
+[2026-08-02 04:17:26 INF] Executed DbCommand (38ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:17:26 INF] HTTP GET /api/cart responded 200 in 53.3867 ms
+[2026-08-02 04:17:27 INF] HTTP OPTIONS /api/product responded 204 in 0.1886 ms
+[2026-08-02 04:17:27 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:17:27 INF] HTTP GET /api/product responded 200 in 11.0279 ms
+[2026-08-02 04:18:03 INF] HTTP OPTIONS /api/cart responded 204 in 0.1110 ms
+[2026-08-02 04:18:03 INF] Executed DbCommand (38ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:18:03 INF] HTTP GET /api/cart responded 200 in 45.4452 ms
+[2026-08-02 04:18:03 INF] HTTP OPTIONS /api/product responded 204 in 2.9042 ms
+[2026-08-02 04:18:03 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:03 INF] HTTP GET /api/product responded 200 in 13.3590 ms
+[2026-08-02 04:18:06 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:18:06 INF] HTTP GET /api/cart responded 200 in 10.4520 ms
+[2026-08-02 04:18:10 INF] HTTP OPTIONS /api/cart/clear responded 204 in 0.0520 ms
+[2026-08-02 04:18:10 INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-02 04:18:10 INF] Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [CartItems]
+OUTPUT 1
+WHERE [CartItemId] = @p0;
+[2026-08-02 04:18:10 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:18:10 INF] HTTP DELETE /api/cart/clear responded 200 in 51.1140 ms
+[2026-08-02 04:18:11 INF] HTTP OPTIONS /api/product responded 204 in 0.0801 ms
+[2026-08-02 04:18:11 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:11 INF] HTTP GET /api/product responded 200 in 7.8705 ms
+[2026-08-02 04:18:14 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:14 INF] HTTP GET /api/product responded 200 in 10.3265 ms
+[2026-08-02 04:18:17 INF] HTTP OPTIONS /api/product responded 204 in 0.0720 ms
+[2026-08-02 04:18:17 INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:17 INF] HTTP GET /api/product responded 200 in 24.9274 ms
+[2026-08-02 04:18:24 INF] HTTP OPTIONS /api/product responded 204 in 0.0622 ms
+[2026-08-02 04:18:24 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:24 INF] HTTP GET /api/product responded 200 in 13.6589 ms
+[2026-08-02 04:18:24 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:24 INF] HTTP GET /api/product responded 200 in 7.0897 ms
+[2026-08-02 04:18:39 INF] HTTP OPTIONS /api/product responded 204 in 0.0547 ms
+[2026-08-02 04:18:39 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:39 INF] HTTP GET /api/product responded 200 in 9.1445 ms
+[2026-08-02 04:18:52 INF] HTTP OPTIONS /api/product responded 204 in 0.0533 ms
+[2026-08-02 04:18:52 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:52 INF] HTTP GET /api/product responded 200 in 7.2142 ms
+[2026-08-02 04:18:55 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:18:55 INF] HTTP GET /api/product responded 200 in 6.4401 ms
+[2026-08-02 04:19:00 INF] HTTP OPTIONS /api/product responded 204 in 0.0537 ms
+[2026-08-02 04:19:00 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:00 INF] HTTP GET /api/product responded 200 in 12.8684 ms
+[2026-08-02 04:19:03 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:03 INF] HTTP GET /api/product responded 200 in 11.3427 ms
+[2026-08-02 04:19:04 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:04 INF] HTTP GET /api/product responded 200 in 6.0902 ms
+[2026-08-02 04:19:07 INF] HTTP OPTIONS /api/product responded 204 in 0.0512 ms
+[2026-08-02 04:19:07 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:07 INF] HTTP GET /api/product responded 200 in 8.9636 ms
+[2026-08-02 04:19:11 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:11 INF] HTTP GET /api/product responded 200 in 9.5600 ms
+[2026-08-02 04:19:12 INF] HTTP OPTIONS /api/product responded 204 in 0.0659 ms
+[2026-08-02 04:19:12 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:12 INF] HTTP GET /api/product responded 200 in 8.8029 ms
+[2026-08-02 04:19:14 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:14 INF] HTTP GET /api/product responded 200 in 7.8671 ms
+[2026-08-02 04:19:15 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:15 INF] HTTP GET /api/product responded 200 in 7.1937 ms
+[2026-08-02 04:19:16 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:16 INF] HTTP GET /api/product responded 200 in 10.6175 ms
+[2026-08-02 04:19:19 INF] HTTP OPTIONS /api/product responded 204 in 0.0692 ms
+[2026-08-02 04:19:19 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:19:19 INF] HTTP GET /api/product responded 200 in 8.7969 ms
+[2026-08-02 04:20:28 INF] HTTP OPTIONS /api/product responded 204 in 0.1024 ms
+[2026-08-02 04:20:28 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:20:28 INF] HTTP GET /api/product responded 200 in 12.9944 ms
+[2026-08-02 04:20:31 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:20:31 INF] HTTP GET /api/product responded 200 in 15.0032 ms
+[2026-08-02 04:20:32 INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:20:32 INF] HTTP GET /api/product responded 200 in 15.0571 ms
+[2026-08-02 04:20:36 INF] HTTP OPTIONS /api/product responded 204 in 0.0441 ms
+[2026-08-02 04:20:36 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:20:36 INF] HTTP GET /api/product responded 200 in 14.5261 ms
+[2026-08-02 04:20:37 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:20:37 INF] HTTP GET /api/product responded 200 in 5.9435 ms
+[2026-08-02 04:20:58 INF] HTTP OPTIONS /api/product/1 responded 204 in 0.0369 ms
+[2026-08-02 04:20:58 INF] Executed DbCommand (5ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[ProductId] = @__productId_0
+[2026-08-02 04:20:58 INF] HTTP GET /api/product/1 responded 200 in 12.5187 ms
+[2026-08-02 04:20:58 INF] HTTP OPTIONS /api/product/category/1 responded 204 in 0.1311 ms
+[2026-08-02 04:20:58 INF] Executed DbCommand (4ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__categoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-02 04:20:58 INF] Executed DbCommand (4ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[CategoryId] = @__categoryId_0 AND [p].[IsActive] = CAST(1 AS bit)
+[2026-08-02 04:20:58 INF] HTTP GET /api/product/category/1 responded 200 in 20.3777 ms
+[2026-08-02 04:21:19 INF] HTTP OPTIONS /api/product responded 204 in 0.0444 ms
+[2026-08-02 04:21:19 INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:21:19 INF] HTTP GET /api/product responded 200 in 13.1275 ms
+[2026-08-02 04:21:20 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:21:20 INF] HTTP GET /api/product responded 200 in 6.3793 ms
+[2026-08-02 04:38:16 INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0556 ms
+[2026-08-02 04:38:16 INF] Executed DbCommand (7ms) [Parameters=[@__loginDto_Email_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[CreatedDate], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[LastName], [u].[ModifiedDate], [u].[PasswordHash], [u].[RoleId], [r].[RoleId], [r].[Name]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[RoleId]
+WHERE [u].[Email] = @__loginDto_Email_0
+[2026-08-02 04:38:16 INF] Executed DbCommand (4ms) [Parameters=[@__user_UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RefreshTokenId], [r].[Created], [r].[CreatedDate], [r].[Expires], [r].[ModifiedDate], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__user_UserId_0 AND [r].[Revoked] IS NULL AND [r].[Expires] > GETUTCDATE()
+[2026-08-02 04:38:16 INF] Executed DbCommand (6ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 256), @p1='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = DateTime2), @p6='?' (DbType = DateTime2), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = DateTime2), @p10='?' (Size = 512), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [RefreshTokens] SET [ReasonRevoked] = @p0, [Revoked] = @p1
+OUTPUT 1
+WHERE [RefreshTokenId] = @p2;
+INSERT INTO [RefreshTokens] ([Created], [CreatedDate], [Expires], [ModifiedDate], [ReasonRevoked], [ReplacedByToken], [Revoked], [Token], [UserId])
+OUTPUT INSERTED.[RefreshTokenId]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+[2026-08-02 04:38:16 INF] HTTP POST /api/auth/login responded 200 in 263.3029 ms
+[2026-08-02 04:38:16 INF] HTTP OPTIONS /api/product responded 204 in 0.0386 ms
+[2026-08-02 04:38:16 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:38:16 INF] HTTP GET /api/product responded 200 in 11.9855 ms
+[2026-08-02 04:38:17 INF] HTTP OPTIONS /api/cart responded 204 in 0.0509 ms
+[2026-08-02 04:38:17 INF] Executed DbCommand (12ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:17 INF] HTTP GET /api/cart responded 200 in 19.7963 ms
+[2026-08-02 04:38:20 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:38:20 INF] HTTP GET /api/product responded 200 in 5.3800 ms
+[2026-08-02 04:38:31 INF] HTTP OPTIONS /api/product/1 responded 204 in 0.0372 ms
+[2026-08-02 04:38:32 INF] Executed DbCommand (6ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[ProductId] = @__productId_0
+[2026-08-02 04:38:32 INF] HTTP GET /api/product/1 responded 200 in 12.9528 ms
+[2026-08-02 04:38:32 INF] HTTP OPTIONS /api/product/category/1 responded 204 in 0.0546 ms
+[2026-08-02 04:38:32 INF] Executed DbCommand (2ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__categoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-02 04:38:32 INF] Executed DbCommand (4ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[CategoryId] = @__categoryId_0 AND [p].[IsActive] = CAST(1 AS bit)
+[2026-08-02 04:38:32 INF] HTTP GET /api/product/category/1 responded 200 in 16.3868 ms
+[2026-08-02 04:38:35 INF] HTTP OPTIONS /api/cart/add responded 204 in 0.0384 ms
+[2026-08-02 04:38:35 INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-02 04:38:35 INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-02 04:38:35 INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([CartId], [ProductId], [Quantity], [UnitPrice])
+OUTPUT INSERTED.[CartItemId]
+VALUES (@p0, @p1, @p2, @p3);
+[2026-08-02 04:38:35 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:35 INF] HTTP POST /api/cart/add responded 200 in 30.9959 ms
+[2026-08-02 04:38:37 INF] HTTP OPTIONS /api/cart responded 204 in 0.0435 ms
+[2026-08-02 04:38:37 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:37 INF] HTTP GET /api/cart responded 200 in 10.0177 ms
+[2026-08-02 04:38:41 INF] HTTP OPTIONS /api/cart/items/3 responded 204 in 0.0299 ms
+[2026-08-02 04:38:41 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:41 INF] Executed DbCommand (3ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:41 INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:41 INF] HTTP PUT /api/cart/items/3 responded 200 in 25.3239 ms
+[2026-08-02 04:38:42 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:42 INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:42 INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:42 INF] HTTP PUT /api/cart/items/3 responded 200 in 23.7785 ms
+[2026-08-02 04:38:42 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:42 INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:42 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:42 INF] HTTP PUT /api/cart/items/3 responded 200 in 26.8614 ms
+[2026-08-02 04:38:42 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:42 INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:42 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:42 INF] HTTP PUT /api/cart/items/3 responded 200 in 31.7875 ms
+[2026-08-02 04:38:43 INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:43 INF] Executed DbCommand (8ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:43 INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:43 INF] HTTP PUT /api/cart/items/3 responded 200 in 30.4527 ms
+[2026-08-02 04:38:43 INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:43 INF] Executed DbCommand (10ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:43 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:43 INF] HTTP PUT /api/cart/items/3 responded 200 in 36.3916 ms
+[2026-08-02 04:38:43 INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:43 INF] Executed DbCommand (9ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:43 INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:43 INF] HTTP PUT /api/cart/items/3 responded 200 in 48.1105 ms
+[2026-08-02 04:38:44 INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:44 INF] Executed DbCommand (10ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:44 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:44 INF] HTTP PUT /api/cart/items/3 responded 200 in 37.1115 ms
+[2026-08-02 04:38:44 INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:44 INF] Executed DbCommand (9ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-02 04:38:44 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:38:44 INF] HTTP PUT /api/cart/items/3 responded 200 in 42.5709 ms
+[2026-08-02 04:38:50 INF] HTTP OPTIONS /api/product responded 204 in 0.0903 ms
+[2026-08-02 04:38:50 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:38:50 INF] HTTP GET /api/product responded 200 in 12.7251 ms
+[2026-08-02 04:39:15 INF] HTTP OPTIONS /api/product responded 204 in 0.0478 ms
+[2026-08-02 04:39:15 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:39:15 INF] HTTP GET /api/product responded 200 in 11.2025 ms
+[2026-08-02 04:39:17 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:39:17 INF] HTTP GET /api/product responded 200 in 7.0142 ms
+[2026-08-02 04:39:21 INF] HTTP OPTIONS /api/product responded 204 in 0.0634 ms
+[2026-08-02 04:39:21 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:39:21 INF] HTTP GET /api/product responded 200 in 6.6979 ms
+[2026-08-02 04:39:24 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:39:24 INF] HTTP GET /api/product responded 200 in 7.1859 ms
+[2026-08-02 04:39:42 INF] HTTP OPTIONS /api/product/1 responded 204 in 0.3011 ms
+[2026-08-02 04:39:42 INF] Executed DbCommand (5ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[ProductId] = @__productId_0
+[2026-08-02 04:39:42 INF] HTTP GET /api/product/1 responded 200 in 10.3507 ms
+[2026-08-02 04:39:42 INF] HTTP OPTIONS /api/product/category/1 responded 204 in 0.0497 ms
+[2026-08-02 04:39:42 INF] Executed DbCommand (3ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__categoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-02 04:39:42 INF] Executed DbCommand (4ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[CategoryId] = @__categoryId_0 AND [p].[IsActive] = CAST(1 AS bit)
+[2026-08-02 04:39:42 INF] HTTP GET /api/product/category/1 responded 200 in 18.6557 ms
+[2026-08-02 04:39:46 INF] HTTP OPTIONS /api/product responded 204 in 0.0317 ms
+[2026-08-02 04:39:46 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:39:46 INF] HTTP GET /api/product responded 200 in 6.9961 ms
+[2026-08-02 04:39:49 INF] HTTP OPTIONS /api/cart responded 204 in 0.0338 ms
+[2026-08-02 04:39:49 INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:39:49 INF] HTTP GET /api/cart responded 200 in 19.3580 ms
+[2026-08-02 04:39:50 INF] Executed DbCommand (13ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:39:50 INF] HTTP GET /api/cart responded 200 in 20.6201 ms
+[2026-08-02 04:40:08 INF] HTTP OPTIONS /api/cart responded 204 in 0.0656 ms
+[2026-08-02 04:40:08 INF] Executed DbCommand (28ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:40:08 INF] HTTP GET /api/cart responded 200 in 35.4548 ms
+[2026-08-02 04:40:11 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:40:11 INF] HTTP GET /api/cart responded 200 in 9.9224 ms
+[2026-08-02 04:40:13 INF] HTTP OPTIONS /api/cart responded 204 in 0.0436 ms
+[2026-08-02 04:40:13 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-02 04:40:13 INF] HTTP GET /api/cart responded 200 in 7.8203 ms
+[2026-08-02 04:40:17 INF] HTTP OPTIONS /api/product responded 204 in 0.0408 ms
+[2026-08-02 04:40:17 INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:40:17 INF] HTTP GET /api/product responded 200 in 15.7114 ms
+[2026-08-02 04:40:36 INF] HTTP OPTIONS /api/product responded 204 in 0.0392 ms
+[2026-08-02 04:40:36 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-02 04:40:36 INF] HTTP GET /api/product responded 200 in 12.0539 ms

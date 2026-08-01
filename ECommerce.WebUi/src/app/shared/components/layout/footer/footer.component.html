@@ -1,0 +1,71 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <!-- Company Section -->
+      <div class="footer-section">
+        <h3 class="footer-title">Company</h3>
+        <ul class="footer-links">
+          @for (link of companyLinks; track link.path) {
+            <li>
+              <a [routerLink]="link.path" class="footer-link">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Customer Service Section -->
+      <div class="footer-section">
+        <h3 class="footer-title">Customer Service</h3>
+        <ul class="footer-links">
+          @for (link of customerServiceLinks; track link.path) {
+            <li>
+              <a [routerLink]="link.path" class="footer-link">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div class="footer-section">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          @for (link of quickLinks; track link.path) {
+            <li>
+              <a [routerLink]="link.path" class="footer-link">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Newsletter Section -->
+      <div class="footer-section">
+        <h3 class="footer-title">Newsletter</h3>
+        <p class="footer-description">Subscribe to our newsletter for updates and offers.</p>
+        <form class="newsletter-form" (submit)="$event.preventDefault()">
+          <input 
+            type="email" 
+            placeholder="Enter your email" 
+            class="newsletter-input"
+            [(ngModel)]="newsletterEmail"
+            required
+          />
+          <button type="submit" class="newsletter-button">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Social Media & Copyright -->
+    <div class="footer-bottom">
+      <div class="social-links">
+        @for (social of socialLinks; track social.name) {
+          <a [href]="social.url" class="social-link" [attr.aria-label]="social.name" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+        }
+      </div>
+      <p class="copyright">&copy; {{ currentYear }} SurgicalSupply. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

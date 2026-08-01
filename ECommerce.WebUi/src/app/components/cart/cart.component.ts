@@ -1,20 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { trigger, style, animate, transition } from '@angular/animations';
 import { CartService, Cart, CartItem } from '../../services/cart.service';
+import { ButtonComponent } from '../../shared/components/ui/button/button.component';
+import { LoaderComponent } from '../../shared/components/ui/loader/loader.component';
+import { BreadcrumbComponent } from '../../shared/components/ui/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ButtonComponent, LoaderComponent, BreadcrumbComponent],
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-out', style({ opacity: 1 }))
+      ])
+    ]),
+    trigger('slideIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(-20px)' }),
+        animate('400ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+      ])
+    ]),
+    trigger('slideUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('350ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class CartComponent implements OnInit {
-  cart: Cart | null = null;
-  loading = false;
-  errorMessage = '';
+  cart = signal<Cart | null>(null);
+  loading = signal(false);
+  errorMessage = signal('');
 
   constructor(
     private cartService: CartService,
@@ -26,19 +50,19 @@ export class CartComponent implements OnInit {
   }
 
   loadCart(): void {
-    this.loading = true;
+    this.loading.set(true);
     this.cartService.getCart().subscribe({
       next: (response) => {
         if (response.success) {
-          this.cart = response.data;
+          this.cart.set(response.data);
         } else {
-          this.errorMessage = response.message;
+          this.errorMessage.set(response.message);
         }
-        this.loading = false;
+        this.loading.set(false);
       },
       error: (error) => {
-        this.errorMessage = error.error?.message || 'Failed to load cart';
-        this.loading = false;
+        this.errorMessage.set(error.error?.message || 'Failed to load cart');
+        this.loading.set(false);
       }
     });
   }
@@ -49,7 +73,7 @@ export class CartComponent implements OnInit {
     this.cartService.updateCartItem(cartItemId, { quantity }).subscribe({
       next: (response) => {
         if (response.success) {
-          this.cart = response.data;
+          this.cart.set(response.data);
         }
       },
       error: (error) => {
@@ -63,7 +87,7 @@ export class CartComponent implements OnInit {
       this.cartService.removeFromCart(cartItemId).subscribe({
         next: (response) => {
           if (response.success) {
-            this.cart = response.data;
+            this.cart.set(response.data);
           }
         },
         error: (error) => {
@@ -78,7 +102,7 @@ export class CartComponent implements OnInit {
       this.cartService.clearCart().subscribe({
         next: (response) => {
           if (response.success) {
-            this.cart = response.data;
+            this.cart.set(response.data);
           }
         },
         error: (error) => {
@@ -90,5 +114,13 @@ export class CartComponent implements OnInit {
 
   checkout(): void {
     this.router.navigate(['/checkout']);
+  }
+
+  continueShopping(): void {
+    this.router.navigate(['/products']);
+  }
+
+  getItemTotal(item: CartItem): number {
+    return (item.unitPrice || 0) * (item.quantity || 1);
   }
 }

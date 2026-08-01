@@ -1,0 +1,203 @@
+@use '../../../styles/_variables' as *;
+@use '../../../styles/_mixins' as *;
+@use 'sass:color';
+
+.contact-page {
+  min-height: 100vh;
+  padding-top: $navbar-height;
+  padding-bottom: $spacing-3xl;
+}
+
+// Hero Section
+.hero-section {
+  text-align: center;
+  padding: $spacing-4xl 0;
+  background: linear-gradient(135deg, $color-primary 0%, color.adjust($color-primary, $lightness: -20%) 100%);
+  color: $color-primary-contrast;
+  margin-bottom: $spacing-3xl;
+}
+
+.hero-title {
+  @include heading-1;
+  margin: 0 0 $spacing-md 0;
+}
+
+.hero-subtitle {
+  @include body-text;
+  font-size: $font-size-lg;
+  opacity: 0.9;
+  margin: 0;
+}
+
+// Contact Layout
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-3xl;
+
+  @include breakpoint(lg) {
+    grid-template-columns: 1fr 380px;
+  }
+}
+
+// Contact Form Section
+.contact-form-section {
+  .form-card {
+    @include card($padding: $spacing-xl);
+    background-color: $color-surface;
+    box-shadow: $shadow-card;
+  }
+}
+
+.form-title {
+  @include heading-2;
+  margin: 0 0 $spacing-xl 0;
+}
+
+.form-group {
+  margin-bottom: $spacing-lg;
+}
+
+.form-label {
+  @include body-text;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  margin-bottom: $spacing-sm;
+  display: block;
+}
+
+.form-input,
+.form-textarea {
+  @include input-base;
+  width: 100%;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  font-size: $font-size-base;
+  transition: border-color $transition-fast $transition-ease;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  &::placeholder {
+    color: $color-text-hint;
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+}
+
+// Contact Info Section
+.contact-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include breakpoint(lg) {
+    position: sticky;
+    top: calc($navbar-height + $spacing-lg);
+    height: fit-content;
+  }
+}
+
+.info-card,
+.quick-links-card {
+  @include card($padding: $spacing-lg);
+  background-color: $color-surface;
+  box-shadow: $shadow-card;
+}
+
+.info-title {
+  @include heading-3;
+  margin: 0 0 $spacing-lg 0;
+}
+
+.info-item {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: $border-radius-md;
+  background-color: rgba($color-primary, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.info-content {
+  flex: 1;
+}
+
+.info-label {
+  @include heading-6;
+  margin: 0 0 $spacing-xs 0;
+}
+
+.info-value {
+  @include body-text;
+  color: $color-text-secondary;
+  margin: 0;
+  line-height: $line-height-relaxed;
+}
+
+.quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.quick-link {
+  @include body-text;
+  color: $color-primary;
+  text-decoration: none;
+  padding: $spacing-sm 0;
+  transition: color $transition-fast $transition-ease;
+
+  &:hover {
+    color: color.adjust($color-primary, $lightness: -10%);
+  }
+}
+
+// Responsive Adjustments
+@include mobile-only {
+  .hero-section {
+    padding: $spacing-3xl 0;
+  }
+
+  .hero-title {
+    font-size: $font-size-3xl;
+  }
+
+  .form-actions {
+    app-button {
+      width: 100%;
+    }
+  }
+}

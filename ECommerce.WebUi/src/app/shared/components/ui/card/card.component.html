@@ -1,0 +1,12 @@
+<div 
+  class="card"
+  [class.elevation]="elevation()"
+  [class.hoverable]="hoverable()"
+  [class.clickable]="clickable()"
+  [class.padding-sm]="padding() === 'sm'"
+  [class.padding-md]="padding() === 'md'"
+  [class.padding-lg]="padding() === 'lg'"
+  (click)="clicked?.()">
+  
+  <ng-content></ng-content>
+</div>

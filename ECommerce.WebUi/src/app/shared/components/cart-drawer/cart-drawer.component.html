@@ -1,0 +1,102 @@
+@if (open()) {
+  <div class="cart-drawer-backdrop" @backdrop (click)="onBackdropClick()"></div>
+  
+  <aside class="cart-drawer" @slideIn>
+    <div class="cart-drawer-header">
+      <h2 class="cart-title">Shopping Cart</h2>
+      <button class="close-button" (click)="close()" aria-label="Close cart">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    @if (loading()) {
+      <div class="cart-loading">
+        <app-loader type="spinner" size="md"></app-loader>
+      </div>
+    } @else if (cartItems().length > 0) {
+      <div class="cart-items">
+        @for (item of cartItems(); track item.cartItemId) {
+          <div class="cart-item">
+            <div class="item-image">
+              @if (item.productImage) {
+                <img [src]="item.productImage" [alt]="item.productName" />
+              } @else {
+                <div class="image-placeholder">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                </div>
+              }
+            </div>
+
+            <div class="item-details">
+              <h3 class="item-name">{{ item.productName }}</h3>
+              <div class="item-price">${{ item.unitPrice?.toFixed(2) || '0.00' }}</div>
+            </div>
+
+            <div class="item-actions">
+              <div class="quantity-control">
+                <button class="quantity-button"(click)="updateQuantity(item.cartItemId, item.quantity - 1)" [disabled]="item.quantity <= 1">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
+                <span class="quantity-value">{{ item.quantity }}</span>
+                <button class="quantity-button" (click)="updateQuantity(item.cartItemId, item.quantity + 1)" [disabled]="item.quantity >= item.stockQuantity">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
+              </div>
+              <button class="remove-button" (click)="removeItem(item.cartItemId)" aria-label="Remove item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span class="label">Subtotal</span>
+            <span class="value">${{ cartTotal().toFixed(2) }}</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Items</span>
+            <span class="value">{{ cartCount() }}</span>
+          </div>
+        </div>
+
+        <div class="cart-actions">
+          <app-button variant="primary" size="lg" [fullWidth]="true" (clicked)="navigateToCheckout()">
+            Proceed to Checkout
+          </app-button>
+          <app-button variant="outline" size="md" [fullWidth]="true" (clicked)="navigateToCartPage()">
+            View Full Cart
+          </app-button>
+        </div>
+      </div>
+    } @else {
+      <div class="cart-empty">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <h3>Your cart is empty</h3>
+        <p>Add some products to get started</p>
+        <app-button variant="primary" (clicked)="close()">Continue Shopping</app-button>
+      </div>
+    }
+  </aside>
+}

@@ -1,0 +1,113 @@
+@use '../../../../../styles/_variables' as *;
+@use '../../../../../styles/_mixins' as *;
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-full;
+  padding: 0 $spacing-md;
+  height: $input-height-md;
+  transition: border-color $transition-base $transition-ease,
+              box-shadow $transition-base $transition-ease;
+
+  &:focus-within {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+
+  &.sm {
+    height: $input-height-sm;
+    padding: 0 $spacing-sm;
+
+    .search-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    input {
+      font-size: $font-size-sm;
+    }
+
+    .clear-button {
+      width: 20px;
+      height: 20px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  &.lg {
+    height: $input-height-lg;
+    padding: 0 $spacing-lg;
+
+    .search-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    input {
+      font-size: $font-size-lg;
+    }
+
+    .clear-button {
+      width: 28px;
+      height: 28px;
+
+      svg {
+        width: 16px;
+      }
+    }
+  }
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  color: $color-text-hint;
+  flex-shrink: 0;
+}
+
+input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: $color-text-primary;
+  padding: 0 $spacing-sm;
+  outline: none;
+
+  &::placeholder {
+    color: $color-text-hint;
+  }
+}
+
+.clear-button {
+  @include reset-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: $color-background;
+  color: $color-text-secondary;
+  transition: background-color $transition-fast $transition-ease,
+              color $transition-fast $transition-ease;
+
+  &:hover {
+    background-color: $color-error;
+    color: $color-error-contrast;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
