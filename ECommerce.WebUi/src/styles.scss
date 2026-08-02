@@ -3,6 +3,9 @@
 @use './styles/_mixins' as *;
 @use './styles/_animations' as *;
 
+/* Import ngx-toastr styles */
+@import 'ngx-toastr/toastr';
+
 /* Reset and Base Styles */
 * {
   margin: 0;

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
+import { NotificationService } from '../core/services/notification.service';
 
 export interface LoginRequest {
   email: string;
@@ -36,18 +38,39 @@ export interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private notificationService: NotificationService
+  ) {}
 
-  login(credentials: LoginRequest): Observable<AuthResponse> {
-    return this.apiService.post<AuthResponse>('/auth/login', credentials);
+  login(credentials: LoginRequest, notify = true): Observable<AuthResponse> {
+    return this.apiService.post<AuthResponse>('/auth/login', credentials).pipe(
+      tap((response) => {
+        if (response.success && notify) {
+          this.notificationService.showLoginSuccess();
+        }
+      })
+    );
   }
 
-  register(userData: RegisterRequest): Observable<AuthResponse> {
-    return this.apiService.post<AuthResponse>('/auth/register', userData);
+  register(userData: RegisterRequest, notify = true): Observable<AuthResponse> {
+    return this.apiService.post<AuthResponse>('/auth/register', userData).pipe(
+      tap((response) => {
+        if (response.success && notify) {
+          this.notificationService.showRegistrationSuccess();
+        }
+      })
+    );
   }
 
-  logout(): Observable<any> {
-    return this.apiService.post<any>('/auth/logout', {});
+  logout(notify = true): Observable<any> {
+    return this.apiService.post<any>('/auth/logout', {}).pipe(
+      tap(() => {
+        if (notify) {
+          this.notificationService.showLogout();
+        }
+      })
+    );
   }
 
   refreshToken(): Observable<AuthResponse> {

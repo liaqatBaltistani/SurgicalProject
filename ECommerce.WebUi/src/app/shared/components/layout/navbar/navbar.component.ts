@@ -31,7 +31,7 @@ export class NavbarComponent {
 
   isScrolled = signal(false);
   isMobileMenuOpen = signal(false);
-  cartItemCount = signal(0);
+  cartItemCount = computed(() => this.cartService.cartCount());
 
   currentUser = computed(() => this.authService.getCurrentUser());
   isLoggedIn = computed(() => this.authService.isLoggedIn());
@@ -56,13 +56,7 @@ export class NavbarComponent {
 
   private loadCartCount(): void {
     if (this.isLoggedIn()) {
-      this.cartService.getCart().subscribe({
-        next: (response) => {
-          if (response.success) {
-            this.cartItemCount.set(response.data.totalItems || 0);
-          }
-        }
-      });
+      this.cartService.getCart().subscribe();
     }
   }
 
