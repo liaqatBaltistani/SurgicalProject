@@ -1,0 +1,2 @@
+[2026-08-03 00:20:28 WRN] Failed to determine the https port for redirect.
+[2026-08-03 00:20:28 INF] HTTP OPTIONS /api/product responded 204 in 64.3135 ms
