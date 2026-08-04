@@ -1,0 +1,23 @@
+<div class="search-bar">
+  <div class="search-bar-container">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input
+      type="text"
+      class="search-input"
+      [placeholder]="placeholder"
+      [value]="value"
+      (input)="onInput($event)"
+      [disabled]="loading"
+    />
+    <button
+      *ngIf="hasValue()"
+      mat-icon-button
+      class="clear-button"
+      (click)="onClear()"
+      [disabled]="loading"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-icon *ngIf="loading" class="loading-icon">sync</mat-icon>
+  </div>
+</div>

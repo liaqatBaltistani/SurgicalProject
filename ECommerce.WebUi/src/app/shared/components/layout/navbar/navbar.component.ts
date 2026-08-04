@@ -35,6 +35,10 @@ export class NavbarComponent {
 
   currentUser = computed(() => this.authService.getCurrentUser());
   isLoggedIn = computed(() => this.authService.isLoggedIn());
+  isAdmin = computed(() => {
+    const user = this.authService.getCurrentUser();
+    return user && (user.role === 'Admin' || user.role === 'admin');
+  });
 
   navigationLinks = [
     { label: 'Home', path: '/home' },
@@ -42,6 +46,8 @@ export class NavbarComponent {
     { label: 'About Us', path: '/about' },
     { label: 'Contact Us', path: '/contact' }
   ];
+
+  adminLink = { label: 'Admin Panel', path: '/admin' };
 
   constructor() {
     this.handleScroll();
@@ -79,5 +85,9 @@ export class NavbarComponent {
 
   navigateToWishlist(): void {
     this.router.navigate(['/wishlist']);
+  }
+
+  navigateToAdmin(): void {
+    this.router.navigate(['/admin']);
   }
 }

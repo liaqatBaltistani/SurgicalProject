@@ -3,6 +3,9 @@
 @use './styles/_mixins' as *;
 @use './styles/_animations' as *;
 
+/* Import admin theme */
+@use './styles/admin-theme' as *;
+
 /* Import ngx-toastr styles */
 @import 'ngx-toastr/toastr';
 

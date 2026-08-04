@@ -1,0 +1,140 @@
+@import '../../../../../../styles/admin-theme';
+
+.metric-card {
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-normal);
+
+  &:hover {
+    box-shadow: 0 4px 12px var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  &.loading {
+    pointer-events: none;
+  }
+}
+
+.metric-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.metric-card-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.metric-card-value {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+
+  .value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .unit {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+}
+
+.metric-card-comparison {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xs);
+}
+
+.comparison-label {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.metric-card-trend {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  .trend-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.text-green-600 {
+  color: var(--success-color);
+}
+
+.text-red-600 {
+  color: var(--danger-color);
+}
+
+// Skeleton loading
+.metric-card-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.skeleton-title {
+  width: 80px;
+  height: 14px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--background-color) 25%, var(--border-color) 50%, var(--background-color) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-value {
+  width: 120px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--background-color) 25%, var(--border-color) 50%, var(--background-color) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-comparison {
+  width: 100px;
+  height: 12px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--background-color) 25%, var(--border-color) 50%, var(--background-color) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Responsive
+@include responsive-breakpoint(mobile) {
+  .metric-card {
+    padding: var(--spacing-md);
+  }
+
+  .metric-card-value .value {
+    font-size: 1.5rem;
+  }
+}

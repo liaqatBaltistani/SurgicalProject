@@ -1,0 +1,23 @@
+<div class="metric-card" [class.loading]="loading">
+  <div *ngIf="loading" class="metric-card-skeleton">
+    <div class="skeleton-title"></div>
+    <div class="skeleton-value"></div>
+    <div class="skeleton-comparison"></div>
+  </div>
+
+  <div *ngIf="!loading" class="metric-card-content">
+    <h3 class="metric-card-title">{{ title }}</h3>
+    <div class="metric-card-value">
+      <span class="value">{{ value }}</span>
+      <span *ngIf="unit" class="unit">{{ unit }}</span>
+    </div>
+    <div *ngIf="hasComparison()" class="metric-card-comparison">
+      <span class="comparison-label">vs {{ previousValue }} {{ unit }}</span>
+      <div *ngIf="trend !== null" class="metric-card-trend" [ngClass]="trendColor()">
+        <mat-icon *ngIf="trendDirection() === 'up'" class="trend-icon">trending_up</mat-icon>
+        <mat-icon *ngIf="trendDirection() === 'down'" class="trend-icon">trending_down</mat-icon>
+        <span>{{ Math.abs(trend) }}%</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<aside class="sidebar" [class.collapsed]="collapsed">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <mat-icon class="logo-icon">medical_services</mat-icon>
+      <span *ngIf="!collapsed" class="logo-text">Surgical Admin</span>
+    </div>
+    <button *ngIf="!collapsed" mat-icon-button class="toggle-button" (click)="onToggle()">
+      <mat-icon>menu_open</mat-icon>
+    </button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul class="nav-list">
+      <li *ngFor="let item of menuItems" class="nav-item">
+        <a
+          *ngIf="!hasChildren(item)"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          class="nav-link"
+          [title]="collapsed ? item.label : ''"
+        >
+          <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+          <span *ngIf="!collapsed" class="nav-label">{{ item.label }}</span>
+          <span *ngIf="item.badge && !collapsed" class="nav-badge">{{ item.badge }}</span>
+        </a>
+
+        <div *ngIf="hasChildren(item)" class="nav-group">
+          <button class="nav-link group-toggle" (click)="toggleExpand(item)">
+            <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+            <span *ngIf="!collapsed" class="nav-label">{{ item.label }}</span>
+            <mat-icon *ngIf="!collapsed" class="expand-icon" [class.expanded]="isExpanded(item)">expand_more</mat-icon>
+          </button>
+          <ul *ngIf="!collapsed && isExpanded(item)" class="sub-nav-list">
+            <li *ngFor="let child of item.children" class="sub-nav-item">
+              <a [routerLink]="child.path" routerLinkActive="active" class="sub-nav-link">
+                <span class="sub-nav-label">{{ child.label }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button mat-button class="logout-button" (click)="onLogout()" [title]="collapsed ? 'Logout' : ''">
+      <mat-icon class="logout-icon">logout</mat-icon>
+      <span *ngIf="!collapsed" class="logout-text">Logout</span>
+    </button>
+  </div>
+</aside>

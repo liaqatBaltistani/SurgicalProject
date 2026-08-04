@@ -1,0 +1,83 @@
+@import '../../../../../../styles/admin-theme';
+
+.chart-card {
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-normal);
+
+  &:hover {
+    box-shadow: 0 4px 12px var(--shadow-md);
+  }
+
+  &.loading {
+    pointer-events: none;
+  }
+}
+
+.chart-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.chart-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+}
+
+// Skeleton loading
+.chart-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.skeleton-header {
+  width: 150px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--background-color) 25%, var(--border-color) 50%, var(--background-color) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-chart {
+  height: 300px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, var(--background-color) 25%, var(--border-color) 50%, var(--background-color) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Responsive
+@include responsive-breakpoint(mobile) {
+  .chart-card {
+    padding: var(--spacing-md);
+  }
+
+  .chart-container {
+    height: 250px !important;
+  }
+
+  .skeleton-chart {
+    height: 250px;
+  }
+}

@@ -1,0 +1,13 @@
+<div class="chart-card" [class.loading]="loading">
+  <div *ngIf="loading" class="chart-skeleton">
+    <div class="skeleton-header"></div>
+    <div class="skeleton-chart"></div>
+  </div>
+
+  <div *ngIf="!loading" class="chart-content">
+    <h3 class="chart-title">{{ title }}</h3>
+    <div class="chart-container" [style.height.px]="height">
+      <canvas #chartCanvas></canvas>
+    </div>
+  </div>
+</div>

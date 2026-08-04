@@ -1,0 +1,11 @@
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    <li *ngFor="let item of items; let last = last" class="breadcrumb-item" [class.active]="last">
+      <a *ngIf="!last && item.path" class="breadcrumb-link" (click)="navigate(item.path)">
+        {{ item.label }}
+      </a>
+      <span *ngIf="last || !item.path" class="breadcrumb-current">{{ item.label }}</span>
+      <mat-icon *ngIf="!last" class="breadcrumb-separator">chevron_right</mat-icon>
+    </li>
+  </ol>
+</nav>

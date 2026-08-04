@@ -1,0 +1,34 @@
+<ng-container [ngSwitch]="type">
+  <!-- Card skeleton -->
+  <div *ngSwitchCase="'card'" class="skeleton-card">
+    <div class="skeleton-header">
+      <div class="skeleton-avatar"></div>
+      <div class="skeleton-header-text">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line short"></div>
+      </div>
+    </div>
+    <div class="skeleton-body">
+      <div *ngFor="let _ of getArray(rows)" class="skeleton-line"></div>
+    </div>
+  </div>
+
+  <!-- Table row skeleton -->
+  <div *ngSwitchCase="'table-row'" class="skeleton-table-row">
+    <div *ngFor="let _ of getArray(count)" class="skeleton-cell"></div>
+  </div>
+
+  <!-- Text skeleton -->
+  <div *ngSwitchCase="'text'" class="skeleton-text">
+    <div *ngFor="let _ of getArray(count)" class="skeleton-line" [style.width]="width" [style.height]="height"></div>
+  </div>
+
+  <!-- Avatar skeleton -->
+  <div *ngSwitchCase="'avatar'" class="skeleton-avatar"></div>
+
+  <!-- Circle skeleton -->
+  <div *ngSwitchCase="'circle'" class="skeleton-circle" [style.width]="width" [style.height]="height"></div>
+
+  <!-- Rect skeleton (default) -->
+  <div *ngSwitchDefault class="skeleton-rect" [style.width]="width" [style.height]="height"></div>
+</ng-container>

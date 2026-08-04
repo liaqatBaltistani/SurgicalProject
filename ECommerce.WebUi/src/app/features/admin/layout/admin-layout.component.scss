@@ -1,0 +1,51 @@
+@import '../../../../styles/admin-theme';
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  font-family: var(--font-family-base);
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left var(--transition-normal);
+
+  &.sidebar-collapsed {
+    margin-left: var(--sidebar-collapsed-width);
+  }
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xl);
+  background-color: var(--background-color);
+}
+
+.main {
+  flex: 1;
+  min-height: 0;
+}
+
+// Responsive
+@include responsive-breakpoint(tablet) {
+  .main-content {
+    margin-left: var(--sidebar-collapsed-width);
+  }
+}
+
+@include responsive-breakpoint(mobile) {
+  .main-content {
+    margin-left: 0;
+  }
+
+  .content-wrapper {
+    padding: var(--spacing-md);
+  }
+}

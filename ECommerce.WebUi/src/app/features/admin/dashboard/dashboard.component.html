@@ -1,0 +1,101 @@
+<div class="dashboard">
+  <admin-page-header
+    title="Dashboard"
+    subtitle="Welcome back! Here's what's happening with your store today."
+  ></admin-page-header>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <admin-stat-card
+      *ngFor="let card of kpiCards()"
+      [icon]="card.icon"
+      [value]="card.value"
+      [label]="card.label"
+      [trend]="card.trend"
+      [color]="card.color"
+      [loading]="loading()"
+    ></admin-stat-card>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions-section">
+    <h3 class="section-title">Quick Actions</h3>
+    <div class="quick-actions-grid">
+      <a *ngFor="let action of quickActions()" [routerLink]="action.path" class="quick-action-card">
+        <mat-icon class="action-icon">{{ action.icon }}</mat-icon>
+        <span class="action-label">{{ action.label }}</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="charts-section">
+    <h3 class="section-title">Analytics Overview</h3>
+    <div class="charts-grid">
+      <div class="chart-placeholder">
+        <div class="chart-card">
+          <h4 class="chart-title">Revenue Over Time</h4>
+          <div class="chart-container">
+            <p class="chart-placeholder-text">Chart will be rendered here</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <div class="chart-card">
+          <h4 class="chart-title">Sales Overview</h4>
+          <div class="chart-container">
+            <p class="chart-placeholder-text">Chart will be rendered here</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <div class="chart-card">
+          <h4 class="chart-title">Orders Trend</h4>
+          <div class="chart-container">
+            <p class="chart-placeholder-text">Chart will be rendered here</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <div class="chart-card">
+          <h4 class="chart-title">Top Selling Products</h4>
+          <div class="chart-container">
+            <p class="chart-placeholder-text">Chart will be rendered here</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <div class="chart-card">
+          <h4 class="chart-title">Category Sales</h4>
+          <div class="chart-container">
+            <p class="chart-placeholder-text">Chart will be rendered here</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <div class="chart-card">
+          <h4 class="chart-title">Inventory Status</h4>
+          <div class="chart-container">
+            <p class="chart-placeholder-text">Chart will be rendered here</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <div class="chart-card">
+          <h4 class="chart-title">Monthly Revenue</h4>
+          <div class="chart-container">
+            <p class="chart-placeholder-text">Chart will be rendered here</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <div class="chart-card">
+          <h4 class="chart-title">Weekly Orders</h4>
+          <div class="chart-container">
+            <p class="chart-placeholder-text">Chart will be rendered here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

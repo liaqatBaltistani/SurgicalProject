@@ -1,0 +1,10 @@
+<div class="empty-state">
+  <div class="empty-state-icon">
+    <mat-icon>{{ icon }}</mat-icon>
+  </div>
+  <h3 class="empty-state-title">{{ title }}</h3>
+  <p class="empty-state-description">{{ description }}</p>
+  <button *ngIf="showAction" mat-button class="empty-state-action" (click)="onActionClick()">
+    {{ actionText }}
+  </button>
+</div>

@@ -23,6 +23,7 @@ public class ProductService : IProductService
             .Select(p => new ProductDto
             {
                 ProductId = p.ProductId,
+                Sku = p.SKU,
                 Name = p.Name,
                 Description = p.Description,
                 Price = p.Price,
@@ -49,6 +50,7 @@ public class ProductService : IProductService
             .Select(p => new ProductDto
             {
                 ProductId = p.ProductId,
+                Sku = p.SKU,
                 Name = p.Name,
                 Description = p.Description,
                 Price = p.Price,
@@ -77,6 +79,7 @@ public class ProductService : IProductService
             .Select(p => new ProductDto
             {
                 ProductId = p.ProductId,
+                Sku = p.SKU,
                 Name = p.Name,
                 Description = p.Description,
                 Price = p.Price,
@@ -101,6 +104,7 @@ public class ProductService : IProductService
 
         var product = new Product
         {
+            SKU = productDto.Sku,
             Name = productDto.Name,
             Description = productDto.Description,
             Price = productDto.Price,
@@ -116,6 +120,7 @@ public class ProductService : IProductService
         var result = new ProductDto
         {
             ProductId = product.ProductId,
+            Sku = product.SKU,
             Name = product.Name,
             Description = product.Description,
             Price = product.Price,
@@ -148,6 +153,7 @@ public class ProductService : IProductService
         var result = new ProductDto
         {
             ProductId = product.ProductId,
+            Sku = product.SKU,
             Name = product.Name,
             Description = product.Description,
             Price = product.Price,
@@ -214,6 +220,7 @@ public class ProductService : IProductService
             .Select(p => new ProductDto
             {
                 ProductId = p.ProductId,
+                Sku = p.SKU,
                 Name = p.Name,
                 Description = p.Description,
                 Price = p.Price,

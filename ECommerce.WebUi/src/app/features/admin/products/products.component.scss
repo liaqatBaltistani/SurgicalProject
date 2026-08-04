@@ -1,0 +1,7 @@
+@import '../../../../styles/admin-theme';
+
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}

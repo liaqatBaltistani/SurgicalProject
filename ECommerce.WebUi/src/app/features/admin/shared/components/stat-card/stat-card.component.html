@@ -1,0 +1,24 @@
+<div class="stat-card" [class.loading]="loading">
+  <div *ngIf="loading" class="stat-card-skeleton">
+    <div class="skeleton-icon"></div>
+    <div class="skeleton-content">
+      <div class="skeleton-value"></div>
+      <div class="skeleton-label"></div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="stat-card-content">
+    <div class="stat-card-icon" [ngClass]="iconColor()">
+      <mat-icon>{{ icon }}</mat-icon>
+    </div>
+    <div class="stat-card-info">
+      <div class="stat-card-value">{{ value }}</div>
+      <div class="stat-card-label">{{ label }}</div>
+      <div *ngIf="trend !== null" class="stat-card-trend" [ngClass]="trendColor()">
+        <mat-icon *ngIf="trendDirection() === 'up'" class="trend-icon">trending_up</mat-icon>
+        <mat-icon *ngIf="trendDirection() === 'down'" class="trend-icon">trending_down</mat-icon>
+        <span>{{ Math.abs(trend) }}%</span>
+      </div>
+    </div>
+  </div>
+</div>

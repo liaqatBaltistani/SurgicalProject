@@ -1,0 +1,25 @@
+<div class="admin-layout">
+  <admin-sidebar
+    [collapsed]="sidebarCollapsed"
+    (toggle)="onSidebarToggle()"
+    (logout)="onLogout()"
+  ></admin-sidebar>
+
+  <div class="main-content" [class.sidebar-collapsed]="sidebarCollapsed">
+    <admin-top-toolbar
+      [sidebarCollapsed]="sidebarCollapsed"
+      [userName]="userName"
+      [userAvatar]="userAvatar"
+      (sidebarToggle)="onSidebarToggle()"
+      (logout)="onLogout()"
+    ></admin-top-toolbar>
+
+    <div class="content-wrapper">
+      <admin-breadcrumb></admin-breadcrumb>
+      <main class="main">
+        <router-outlet></router-outlet>
+      </main>
+      <admin-footer></admin-footer>
+    </div>
+  </div>
+</div>
