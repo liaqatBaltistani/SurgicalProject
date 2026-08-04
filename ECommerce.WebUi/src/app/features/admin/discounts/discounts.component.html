@@ -1,0 +1,32 @@
+<div class="discounts">
+  <admin-page-header
+    title="Discounts"
+    subtitle="Manage promotional discounts and coupons"
+    actionText="Add Discount"
+    [showAction]="true"
+    (actionClick)="onAddDiscount()"
+  ></admin-page-header>
+
+  <admin-toolbar
+    [showSearch]="true"
+    [showFilter]="true"
+    [showExport]="true"
+    [showRefresh]="true"
+    (export)="onExport()"
+    (refresh)="onRefresh()"
+  ></admin-toolbar>
+
+  <admin-data-table
+    [columns]="columns"
+    [data]="discounts()"
+    [loading]="loading()"
+    [selectable]="true"
+    [showActions]="true"
+    [actions]="[
+      { label: 'View', icon: 'visibility', action: 'view' },
+      { label: 'Edit', icon: 'edit', action: 'edit' },
+      { label: 'Delete', icon: 'delete', action: 'delete', color: 'warn' }
+    ]"
+    (actionClick)="onAction($event)"
+  ></admin-data-table>
+</div>

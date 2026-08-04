@@ -1,0 +1,61 @@
+<div class="pagination" *ngIf="totalItems > 0">
+  <div class="pagination-info">
+    Showing {{ startIndex }} to {{ endIndex }} of {{ totalItems }} items
+  </div>
+
+  <div class="pagination-controls">
+    <div class="pagination-pages">
+      <button
+        mat-icon-button
+        class="pagination-button"
+        (click)="onFirst()"
+        [disabled]="currentPage === 1"
+      >
+        <mat-icon>first_page</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="pagination-button"
+        (click)="onPrevious()"
+        [disabled]="currentPage === 1"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+
+      <button
+        *ngFor="let page of pages"
+        mat-button
+        class="pagination-page"
+        [class.active]="page === currentPage"
+        (click)="onPageChange(page)"
+      >
+        {{ page }}
+      </button>
+
+      <button
+        mat-icon-button
+        class="pagination-button"
+        (click)="onNext()"
+        [disabled]="currentPage === totalPages"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="pagination-button"
+        (click)="onLast()"
+        [disabled]="currentPage === totalPages"
+      >
+        <mat-icon>last_page</mat-icon>
+      </button>
+    </div>
+
+    <div class="pagination-size">
+      <select class="page-size-select" (change)="onPageSizeChange($event)">
+        <option *ngFor="let size of pageSizeOptions" [value]="size" [selected]="size === pageSize">
+          {{ size }} / page
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

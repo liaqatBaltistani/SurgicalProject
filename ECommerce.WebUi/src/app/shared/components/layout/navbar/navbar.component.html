@@ -16,6 +16,9 @@
         @for (link of navigationLinks; track link.path) {
           <a [routerLink]="link.path" class="nav-link" routerLinkActive="active">{{ link.label }}</a>
         }
+        @if (isAdmin()) {
+          <a [routerLink]="adminLink.path" class="nav-link admin-link" routerLinkActive="active">{{ adminLink.label }}</a>
+        }
       </nav>
 
       <!-- Right Actions -->
@@ -106,6 +109,9 @@
     <nav class="mobile-nav">
       @for (link of navigationLinks; track link.path) {
         <a [routerLink]="link.path" class="mobile-nav-link" (click)="closeMobileMenu()">{{ link.label }}</a>
+      }
+      @if (isAdmin()) {
+        <a [routerLink]="adminLink.path" class="mobile-nav-link admin-link" (click)="closeMobileMenu()">{{ adminLink.label }}</a>
       }
     </nav>
     <div class="mobile-drawer-footer">

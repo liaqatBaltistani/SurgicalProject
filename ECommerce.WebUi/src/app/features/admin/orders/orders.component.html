@@ -1,0 +1,33 @@
+<div class="orders">
+  <admin-page-header
+    title="Orders"
+    subtitle="Manage customer orders and fulfillment"
+  ></admin-page-header>
+
+  <admin-toolbar
+    [showSearch]="true"
+    [showFilter]="true"
+    [showExport]="true"
+    [showRefresh]="true"
+    (export)="onExport()"
+    (refresh)="onRefresh()"
+  ></admin-toolbar>
+
+  <admin-data-table
+    [columns]="columns"
+    [data]="orders()"
+    [loading]="loading()"
+    [selectable]="true"
+    [showActions]="true"
+    [totalItems]="totalItems()"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    [actions]="[
+      { label: 'View', icon: 'visibility', action: 'view' },
+      { label: 'Invoice', icon: 'receipt', action: 'invoice' },
+      { label: 'Update Status', icon: 'edit', action: 'update' }
+    ]"
+    (actionClick)="onAction($event)"
+    (pageChange)="onPageChange($event.page)"
+  ></admin-data-table>
+</div>

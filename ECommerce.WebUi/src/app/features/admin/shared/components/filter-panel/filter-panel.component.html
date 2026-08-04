@@ -1,0 +1,95 @@
+<div class="filter-panel">
+  <button class="filter-toggle" (click)="onToggle()">
+    <span class="icon">⚙</span>
+    <span>Filters</span>
+    <span *ngIf="activeFiltersCount > 0" class="active-count">{{ activeFiltersCount }}</span>
+  </button>
+
+  <div *ngIf="isOpen" class="filter-dropdown">
+    <div class="filter-groups">
+      <div *ngFor="let filter of filters" class="filter-group">
+        <label class="filter-label">{{ filter.label }}</label>
+
+        <!-- Select filter -->
+        <select *ngIf="filter.type === 'select'" class="filter-select" [(ngModel)]="filter.value" (change)="onFilterChange()" [ngModelOptions]="{standalone: true}">
+          <option value="">All</option>
+          <option *ngFor="let option of filter.options" [value]="option.value">
+            {{ option.label }}
+            <span *ngIf="option.count !== undefined">({{ option.count }})</span>
+          </option>
+        </select>
+
+        <!-- Multi-select filter -->
+        <div *ngIf="filter.type === 'multiselect'" class="filter-multiselect">
+          <div *ngFor="let option of filter.options" class="multiselect-option">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                [checked]="isMultiSelectSelected(filter, option.value)"
+                (change)="onMultiSelectChange(filter, option.value)"
+              />
+              <span>{{ option.label }}</span>
+              <span *ngIf="option.count !== undefined" class="option-count">({{ option.count }})</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Text filter -->
+        <input
+          *ngIf="filter.type === 'text'"
+          type="text"
+          class="filter-input"
+          [(ngModel)]="filter.value"
+          (input)="onFilterChange()"
+          placeholder="Search..."
+          [ngModelOptions]="{standalone: true}"
+        />
+
+        <!-- Date range filter -->
+        <div *ngIf="filter.type === 'date-range'" class="filter-date-range">
+          <input
+            type="date"
+            class="filter-input"
+            [(ngModel)]="filter.value.start"
+            (change)="onFilterChange()"
+            placeholder="From"
+            [ngModelOptions]="{standalone: true}"
+          />
+          <input
+            type="date"
+            class="filter-input"
+            [(ngModel)]="filter.value.end"
+            (change)="onFilterChange()"
+            placeholder="To"
+            [ngModelOptions]="{standalone: true}"
+          />
+        </div>
+
+        <!-- Number range filter -->
+        <div *ngIf="filter.type === 'number-range'" class="filter-number-range">
+          <input
+            type="number"
+            class="filter-input"
+            [(ngModel)]="filter.value.min"
+            (input)="onFilterChange()"
+            placeholder="Min"
+            [ngModelOptions]="{standalone: true}"
+          />
+          <input
+            type="number"
+            class="filter-input"
+            [(ngModel)]="filter.value.max"
+            (input)="onFilterChange()"
+            placeholder="Max"
+            [ngModelOptions]="{standalone: true}"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button class="reset-button" (click)="onReset()">Reset</button>
+      <button class="apply-button" (click)="onToggle()">Apply</button>
+    </div>
+  </div>
+</div>

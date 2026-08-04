@@ -1,0 +1,38 @@
+<div class="image-upload">
+  <div class="upload-zone" [class.dragging]="isDragging" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+    <input
+      type="file"
+      id="image-upload-input"
+      class="upload-input"
+      multiple
+      [accept]="acceptedTypes.join(',')"
+      (change)="onFileSelect($event)"
+      [disabled]="!canAddMore()"
+    />
+    <label for="image-upload-input" class="upload-label" [class.disabled]="!canAddMore()">
+      <mat-icon class="upload-icon">cloud_upload</mat-icon>
+      <p class="upload-text">
+        <span class="upload-primary">Click to upload</span>
+        <span class="upload-secondary">or drag and drop</span>
+      </p>
+      <p class="upload-hint">
+        PNG, JPG, WEBP up to {{ maxSize }}MB (max {{ maxImages }} images)
+      </p>
+    </label>
+  </div>
+
+  <div *ngIf="images.length > 0" class="image-preview-list">
+    <div *ngFor="let image of images; let i = index" class="image-preview-item" [class.primary]="isPrimary(image.id)">
+      <img [src]="image.url" [alt]="'Image ' + (i + 1)" class="preview-image" />
+      <div class="image-overlay">
+        <button mat-icon-button class="overlay-button primary-button" (click)="setPrimaryImage(image.id)" [disabled]="isPrimary(image.id)">
+          <mat-icon>star</mat-icon>
+        </button>
+        <button mat-icon-button class="overlay-button remove-button" (click)="removeImage(image.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="isPrimary(image.id)" class="primary-badge">Primary</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="categories">
+  <admin-page-header
+    title="Categories"
+    subtitle="Manage product categories"
+    actionText="Add Category"
+    [showAction]="true"
+    (actionClick)="onAddCategory()"
+  ></admin-page-header>
+
+  <admin-toolbar
+    [showSearch]="true"
+    [showFilter]="true"
+    [showExport]="true"
+    [showRefresh]="true"
+    (export)="onExport()"
+    (refresh)="onRefresh()"
+  ></admin-toolbar>
+
+  <admin-data-table
+    [columns]="columns"
+    [data]="categories()"
+    [loading]="loading()"
+    [selectable]="true"
+    [showActions]="true"
+    [actions]="[
+      { label: 'View', icon: 'visibility', action: 'view' },
+      { label: 'Edit', icon: 'edit', action: 'edit' },
+      { label: 'Delete', icon: 'delete', action: 'delete', color: 'warn' }
+    ]"
+    (actionClick)="onAction($event)"
+  ></admin-data-table>
+</div>

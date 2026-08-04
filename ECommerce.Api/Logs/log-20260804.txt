@@ -1,0 +1,1591 @@
+[2026-08-04 14:07:44 WRN] Failed to determine the https port for redirect.
+[2026-08-04 14:07:45 INF] HTTP OPTIONS /api/cart responded 204 in 89.2362 ms
+[2026-08-04 14:07:47 INF] HTTP GET /api/cart responded 401 in 2294.5634 ms
+[2026-08-04 14:07:47 INF] HTTP GET /api/cart responded 401 in 10.4578 ms
+[2026-08-04 14:07:47 INF] HTTP OPTIONS /api/auth/refresh-token responded 204 in 0.1770 ms
+[2026-08-04 14:07:49 INF] HTTP POST /api/auth/refresh-token responded 400 in 1557.7134 ms
+[2026-08-04 14:07:50 INF] HTTP OPTIONS /api/auth/login responded 204 in 0.2392 ms
+[2026-08-04 14:07:54 INF] Executed DbCommand (135ms) [Parameters=[@__loginDto_Email_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[CreatedDate], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[LastName], [u].[ModifiedDate], [u].[PasswordHash], [u].[RoleId], [r].[RoleId], [r].[Name]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[RoleId]
+WHERE [u].[Email] = @__loginDto_Email_0
+[2026-08-04 14:07:54 INF] Executed DbCommand (5ms) [Parameters=[@__user_UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RefreshTokenId], [r].[Created], [r].[CreatedDate], [r].[Expires], [r].[ModifiedDate], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__user_UserId_0 AND [r].[Revoked] IS NULL AND [r].[Expires] > GETUTCDATE()
+[2026-08-04 14:07:55 INF] Executed DbCommand (8ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 256), @p1='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = DateTime2), @p6='?' (DbType = DateTime2), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = DateTime2), @p10='?' (Size = 512), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [RefreshTokens] SET [ReasonRevoked] = @p0, [Revoked] = @p1
+OUTPUT 1
+WHERE [RefreshTokenId] = @p2;
+INSERT INTO [RefreshTokens] ([Created], [CreatedDate], [Expires], [ModifiedDate], [ReasonRevoked], [ReplacedByToken], [Revoked], [Token], [UserId])
+OUTPUT INSERTED.[RefreshTokenId]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+[2026-08-04 14:07:55 INF] HTTP POST /api/auth/login responded 200 in 4178.7517 ms
+[2026-08-04 14:07:55 INF] HTTP OPTIONS /api/product responded 204 in 0.3032 ms
+[2026-08-04 14:07:55 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:07:55 INF] HTTP GET /api/product responded 200 in 106.6556 ms
+[2026-08-04 14:07:55 INF] HTTP GET /_framework/aspnetcore-browser-refresh.js responded 404 in 0.2346 ms
+[2026-08-04 14:07:55 INF] HTTP GET /_vs/browserLink responded 404 in 0.1317 ms
+[2026-08-04 14:08:06 INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1894 ms
+[2026-08-04 14:08:06 INF] Executed DbCommand (1ms) [Parameters=[@__loginDto_Email_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[CreatedDate], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[LastName], [u].[ModifiedDate], [u].[PasswordHash], [u].[RoleId], [r].[RoleId], [r].[Name]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[RoleId]
+WHERE [u].[Email] = @__loginDto_Email_0
+[2026-08-04 14:08:06 INF] Executed DbCommand (1ms) [Parameters=[@__user_UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RefreshTokenId], [r].[Created], [r].[CreatedDate], [r].[Expires], [r].[ModifiedDate], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__user_UserId_0 AND [r].[Revoked] IS NULL AND [r].[Expires] > GETUTCDATE()
+[2026-08-04 14:08:06 INF] Executed DbCommand (1ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 256), @p1='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = DateTime2), @p6='?' (DbType = DateTime2), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = DateTime2), @p10='?' (Size = 512), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [RefreshTokens] SET [ReasonRevoked] = @p0, [Revoked] = @p1
+OUTPUT 1
+WHERE [RefreshTokenId] = @p2;
+INSERT INTO [RefreshTokens] ([Created], [CreatedDate], [Expires], [ModifiedDate], [ReasonRevoked], [ReplacedByToken], [Revoked], [Token], [UserId])
+OUTPUT INSERTED.[RefreshTokenId]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+[2026-08-04 14:08:06 INF] HTTP POST /api/auth/login responded 200 in 383.6631 ms
+[2026-08-04 14:08:06 INF] HTTP OPTIONS /api/product responded 204 in 0.0986 ms
+[2026-08-04 14:08:06 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:08:06 INF] HTTP GET /api/product responded 200 in 13.4080 ms
+[2026-08-04 14:08:08 INF] HTTP OPTIONS /api/cart responded 204 in 0.0590 ms
+[2026-08-04 14:08:08 INF] Executed DbCommand (15ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:08:08 INF] HTTP GET /api/cart responded 200 in 151.7804 ms
+[2026-08-04 14:08:08 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:08:08 INF] HTTP GET /api/product responded 200 in 14.8168 ms
+[2026-08-04 14:08:08 INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:08:08 INF] HTTP GET /api/cart responded 200 in 10.0020 ms
+[2026-08-04 14:08:08 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:08:08 INF] HTTP GET /api/product responded 200 in 7.2166 ms
+[2026-08-04 14:08:12 INF] HTTP OPTIONS /api/Category responded 204 in 0.0818 ms
+[2026-08-04 14:08:12 INF] HTTP OPTIONS /api/Category responded 204 in 0.1127 ms
+[2026-08-04 14:08:12 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:08:12 INF] HTTP GET /api/Category responded 200 in 54.9934 ms
+[2026-08-04 14:08:12 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:08:12 INF] HTTP GET /api/Category responded 200 in 6.6923 ms
+[2026-08-04 14:09:30 INF] HTTP OPTIONS /api/Product responded 204 in 0.0703 ms
+[2026-08-04 14:09:30 INF] Executed DbCommand (2ms) [Parameters=[@__productDto_CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__productDto_CategoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-04 14:09:30 INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 2000), @p3='?' (Size = 500), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 200), @p7='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p8='?' (Size = 50), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [CreatedDate], [Description], [ImageUrl], [IsActive], [ModifiedDate], [Name], [Price], [SKU], [StockQuantity])
+OUTPUT INSERTED.[ProductId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+[2026-08-04 14:09:30 ERR] An exception occurred in the database while saving changes for context type 'ECommerce.Infrastructure.Data.ApplicationDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[2026-08-04 14:09:30 ERR] HTTP POST /api/Product responded 500 in 119.0451 ms
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Services.ProductService.CreateProductAsync(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ECommerce.Infrastructure\Services\ProductService.cs:line 114
+   at ECommerce.Api.Controllers.ProductController.CreateProduct(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ecommerce.api\Controllers\ProductController.cs:line 65
+   at lambda_method546(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\CascadeProjects\SurgicalProject\ecommerce.api\Program.cs:line 110
+--- End of stack trace from previous location ---
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[2026-08-04 14:09:30 ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Services.ProductService.CreateProductAsync(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ECommerce.Infrastructure\Services\ProductService.cs:line 114
+   at ECommerce.Api.Controllers.ProductController.CreateProduct(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ecommerce.api\Controllers\ProductController.cs:line 65
+   at lambda_method546(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\CascadeProjects\SurgicalProject\ecommerce.api\Program.cs:line 110
+--- End of stack trace from previous location ---
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[2026-08-04 14:09:54 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:09:54 INF] HTTP GET /api/Product responded 200 in 52.4364 ms
+[2026-08-04 14:09:55 INF] HTTP GET /favicon.ico responded 404 in 0.0758 ms
+[2026-08-04 14:10:11 INF] HTTP OPTIONS /api/Product responded 204 in 0.0925 ms
+[2026-08-04 14:10:11 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:10:11 INF] HTTP GET /api/Product responded 200 in 11.1610 ms
+[2026-08-04 14:10:14 INF] HTTP OPTIONS /api/cart responded 204 in 0.0903 ms
+[2026-08-04 14:10:14 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:10:14 INF] HTTP GET /api/cart responded 200 in 24.8413 ms
+[2026-08-04 14:10:14 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:10:14 INF] HTTP GET /api/Product responded 200 in 6.6409 ms
+[2026-08-04 14:12:07 INF] HTTP OPTIONS /api/Category responded 204 in 0.1451 ms
+[2026-08-04 14:12:07 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:12:07 INF] HTTP GET /api/Category responded 200 in 6.6416 ms
+[2026-08-04 14:12:07 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:12:07 INF] HTTP GET /api/Category responded 200 in 6.4134 ms
+[2026-08-04 14:13:43 INF] HTTP OPTIONS /api/Product responded 204 in 0.0836 ms
+[2026-08-04 14:13:43 INF] Executed DbCommand (1ms) [Parameters=[@__productDto_CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__productDto_CategoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-04 14:13:43 INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 2000), @p3='?' (Size = 500), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 200), @p7='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p8='?' (Size = 50), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [CreatedDate], [Description], [ImageUrl], [IsActive], [ModifiedDate], [Name], [Price], [SKU], [StockQuantity])
+OUTPUT INSERTED.[ProductId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+[2026-08-04 14:13:43 ERR] An exception occurred in the database while saving changes for context type 'ECommerce.Infrastructure.Data.ApplicationDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[2026-08-04 14:13:43 ERR] HTTP POST /api/Product responded 500 in 27.1613 ms
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Services.ProductService.CreateProductAsync(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ECommerce.Infrastructure\Services\ProductService.cs:line 114
+   at ECommerce.Api.Controllers.ProductController.CreateProduct(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ecommerce.api\Controllers\ProductController.cs:line 65
+   at lambda_method546(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\CascadeProjects\SurgicalProject\ecommerce.api\Program.cs:line 110
+--- End of stack trace from previous location ---
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[2026-08-04 14:13:43 ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Services.ProductService.CreateProductAsync(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ECommerce.Infrastructure\Services\ProductService.cs:line 114
+   at ECommerce.Api.Controllers.ProductController.CreateProduct(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ecommerce.api\Controllers\ProductController.cs:line 65
+   at lambda_method546(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\CascadeProjects\SurgicalProject\ecommerce.api\Program.cs:line 110
+--- End of stack trace from previous location ---
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[2026-08-04 14:16:00 INF] HTTP OPTIONS /api/Product responded 204 in 0.0742 ms
+[2026-08-04 14:16:00 INF] Executed DbCommand (1ms) [Parameters=[@__productDto_CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__productDto_CategoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-04 14:16:00 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 2000), @p3='?' (Size = 500), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 200), @p7='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p8='?' (Size = 50), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [CreatedDate], [Description], [ImageUrl], [IsActive], [ModifiedDate], [Name], [Price], [SKU], [StockQuantity])
+OUTPUT INSERTED.[ProductId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+[2026-08-04 14:16:00 ERR] An exception occurred in the database while saving changes for context type 'ECommerce.Infrastructure.Data.ApplicationDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[2026-08-04 14:16:00 ERR] HTTP POST /api/Product responded 500 in 25.0063 ms
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Services.ProductService.CreateProductAsync(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ECommerce.Infrastructure\Services\ProductService.cs:line 114
+   at ECommerce.Api.Controllers.ProductController.CreateProduct(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ecommerce.api\Controllers\ProductController.cs:line 65
+   at lambda_method546(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\CascadeProjects\SurgicalProject\ecommerce.api\Program.cs:line 110
+--- End of stack trace from previous location ---
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[2026-08-04 14:16:00 ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Services.ProductService.CreateProductAsync(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ECommerce.Infrastructure\Services\ProductService.cs:line 114
+   at ECommerce.Api.Controllers.ProductController.CreateProduct(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ecommerce.api\Controllers\ProductController.cs:line 65
+   at lambda_method546(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\CascadeProjects\SurgicalProject\ecommerce.api\Program.cs:line 110
+--- End of stack trace from previous location ---
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[2026-08-04 14:16:39 INF] HTTP OPTIONS /api/Product responded 204 in 0.1508 ms
+[2026-08-04 14:16:39 INF] Executed DbCommand (1ms) [Parameters=[@__productDto_CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__productDto_CategoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-04 14:16:39 INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 2000), @p3='?' (Size = 500), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 200), @p7='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p8='?' (Size = 50), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [CreatedDate], [Description], [ImageUrl], [IsActive], [ModifiedDate], [Name], [Price], [SKU], [StockQuantity])
+OUTPUT INSERTED.[ProductId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+[2026-08-04 14:16:39 ERR] An exception occurred in the database while saving changes for context type 'ECommerce.Infrastructure.Data.ApplicationDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[2026-08-04 14:16:39 ERR] HTTP POST /api/Product responded 500 in 25.5850 ms
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Services.ProductService.CreateProductAsync(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ECommerce.Infrastructure\Services\ProductService.cs:line 114
+   at ECommerce.Api.Controllers.ProductController.CreateProduct(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ecommerce.api\Controllers\ProductController.cs:line 65
+   at lambda_method546(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\CascadeProjects\SurgicalProject\ecommerce.api\Program.cs:line 110
+--- End of stack trace from previous location ---
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[2026-08-04 14:16:39 ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Products' with unique index 'IX_Products_SKU'. The duplicate key value is ().
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b8e0c234-2560-43d0-b89b-4bada6b99558
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Services.ProductService.CreateProductAsync(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ECommerce.Infrastructure\Services\ProductService.cs:line 114
+   at ECommerce.Api.Controllers.ProductController.CreateProduct(CreateProductDto productDto) in D:\CascadeProjects\SurgicalProject\ecommerce.api\Controllers\ProductController.cs:line 65
+   at lambda_method546(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\CascadeProjects\SurgicalProject\ecommerce.api\Program.cs:line 110
+--- End of stack trace from previous location ---
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[2026-08-04 14:22:40 WRN] Failed to determine the https port for redirect.
+[2026-08-04 14:22:40 INF] HTTP OPTIONS /api/Product responded 204 in 50.1775 ms
+[2026-08-04 14:22:42 INF] Executed DbCommand (37ms) [Parameters=[@__productDto_CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__productDto_CategoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-04 14:22:42 INF] Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 2000), @p3='?' (Size = 500), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 200), @p7='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p8='?' (Size = 50), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [CreatedDate], [Description], [ImageUrl], [IsActive], [ModifiedDate], [Name], [Price], [SKU], [StockQuantity])
+OUTPUT INSERTED.[ProductId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+[2026-08-04 14:22:42 INF] HTTP POST /api/Product responded 201 in 1831.4967 ms
+[2026-08-04 14:22:42 INF] HTTP OPTIONS /api/Product responded 204 in 0.5756 ms
+[2026-08-04 14:22:42 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:22:42 INF] HTTP GET /api/Product responded 200 in 179.8783 ms
+[2026-08-04 14:22:43 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:22:43 INF] HTTP GET /api/Product responded 200 in 93.9899 ms
+[2026-08-04 14:22:47 INF] HTTP OPTIONS /api/cart responded 204 in 0.2109 ms
+[2026-08-04 14:22:47 INF] Executed DbCommand (12ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:22:47 INF] HTTP GET /api/cart responded 200 in 291.8406 ms
+[2026-08-04 14:22:48 INF] HTTP OPTIONS /api/Product responded 204 in 0.1178 ms
+[2026-08-04 14:22:48 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:22:48 INF] HTTP GET /api/Product responded 200 in 8.4538 ms
+[2026-08-04 14:23:56 INF] HTTP OPTIONS /api/product responded 204 in 0.1538 ms
+[2026-08-04 14:23:56 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:23:56 INF] HTTP GET /api/product responded 200 in 34.4734 ms
+[2026-08-04 14:24:01 INF] HTTP OPTIONS /api/cart/add responded 204 in 0.1591 ms
+[2026-08-04 14:24:01 INF] HTTP POST /api/cart/add responded 401 in 5.6497 ms
+[2026-08-04 14:24:01 INF] HTTP OPTIONS /api/auth/refresh-token responded 204 in 0.0750 ms
+[2026-08-04 14:24:01 INF] HTTP POST /api/auth/refresh-token responded 400 in 51.5636 ms
+[2026-08-04 14:24:03 INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1685 ms
+[2026-08-04 14:24:03 INF] Executed DbCommand (4ms) [Parameters=[@__loginDto_Email_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[CreatedDate], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[LastName], [u].[ModifiedDate], [u].[PasswordHash], [u].[RoleId], [r].[RoleId], [r].[Name]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[RoleId]
+WHERE [u].[Email] = @__loginDto_Email_0
+[2026-08-04 14:24:04 INF] Executed DbCommand (6ms) [Parameters=[@__user_UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RefreshTokenId], [r].[Created], [r].[CreatedDate], [r].[Expires], [r].[ModifiedDate], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__user_UserId_0 AND [r].[Revoked] IS NULL AND [r].[Expires] > GETUTCDATE()
+[2026-08-04 14:24:04 INF] Executed DbCommand (7ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 256), @p1='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = DateTime2), @p6='?' (DbType = DateTime2), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = DateTime2), @p10='?' (Size = 512), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [RefreshTokens] SET [ReasonRevoked] = @p0, [Revoked] = @p1
+OUTPUT 1
+WHERE [RefreshTokenId] = @p2;
+INSERT INTO [RefreshTokens] ([Created], [CreatedDate], [Expires], [ModifiedDate], [ReasonRevoked], [ReplacedByToken], [Revoked], [Token], [UserId])
+OUTPUT INSERTED.[RefreshTokenId]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+[2026-08-04 14:24:04 INF] HTTP POST /api/auth/login responded 200 in 846.4806 ms
+[2026-08-04 14:24:07 INF] Executed DbCommand (5ms) [Parameters=[@__loginDto_Email_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[CreatedDate], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[LastName], [u].[ModifiedDate], [u].[PasswordHash], [u].[RoleId], [r].[RoleId], [r].[Name]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[RoleId]
+WHERE [u].[Email] = @__loginDto_Email_0
+[2026-08-04 14:24:07 INF] Executed DbCommand (3ms) [Parameters=[@__user_UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RefreshTokenId], [r].[Created], [r].[CreatedDate], [r].[Expires], [r].[ModifiedDate], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__user_UserId_0 AND [r].[Revoked] IS NULL AND [r].[Expires] > GETUTCDATE()
+[2026-08-04 14:24:07 INF] Executed DbCommand (3ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 256), @p1='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = DateTime2), @p6='?' (DbType = DateTime2), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = DateTime2), @p10='?' (Size = 512), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [RefreshTokens] SET [ReasonRevoked] = @p0, [Revoked] = @p1
+OUTPUT 1
+WHERE [RefreshTokenId] = @p2;
+INSERT INTO [RefreshTokens] ([Created], [CreatedDate], [Expires], [ModifiedDate], [ReasonRevoked], [ReplacedByToken], [Revoked], [Token], [UserId])
+OUTPUT INSERTED.[RefreshTokenId]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+[2026-08-04 14:24:07 INF] HTTP POST /api/auth/login responded 200 in 235.5110 ms
+[2026-08-04 14:24:07 INF] HTTP OPTIONS /api/product responded 204 in 0.0812 ms
+[2026-08-04 14:24:07 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:24:07 INF] HTTP GET /api/product responded 200 in 14.0544 ms
+[2026-08-04 14:24:11 INF] HTTP OPTIONS /api/cart/add responded 204 in 0.1060 ms
+[2026-08-04 14:24:11 INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-04 14:24:11 INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-04 14:24:11 INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([CartId], [ProductId], [Quantity], [UnitPrice])
+OUTPUT INSERTED.[CartItemId]
+VALUES (@p0, @p1, @p2, @p3);
+[2026-08-04 14:24:11 INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:24:11 INF] HTTP POST /api/cart/add responded 200 in 110.3548 ms
+[2026-08-04 14:24:13 INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-04 14:24:13 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-04 14:24:13 INF] Executed DbCommand (9ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-04 14:24:13 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:24:13 INF] HTTP POST /api/cart/add responded 200 in 34.4683 ms
+[2026-08-04 14:24:15 INF] HTTP OPTIONS /api/cart responded 204 in 0.1835 ms
+[2026-08-04 14:24:15 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:24:15 INF] HTTP GET /api/cart responded 200 in 13.7055 ms
+[2026-08-04 14:24:17 INF] HTTP OPTIONS /api/cart/items/11 responded 204 in 0.0939 ms
+[2026-08-04 14:24:17 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-04 14:24:17 INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [CartItems]
+OUTPUT 1
+WHERE [CartItemId] = @p0;
+[2026-08-04 14:24:17 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:24:17 INF] HTTP DELETE /api/cart/items/11 responded 200 in 46.8094 ms
+[2026-08-04 14:24:19 INF] HTTP OPTIONS /api/cart/items/12 responded 204 in 0.0665 ms
+[2026-08-04 14:24:19 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-04 14:24:19 INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [CartItems]
+OUTPUT 1
+WHERE [CartItemId] = @p0;
+[2026-08-04 14:24:19 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:24:19 INF] HTTP DELETE /api/cart/items/12 responded 200 in 26.9364 ms
+[2026-08-04 14:24:21 INF] HTTP OPTIONS /api/product responded 204 in 0.3020 ms
+[2026-08-04 14:24:21 INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:24:21 INF] HTTP GET /api/product responded 200 in 13.8824 ms
+[2026-08-04 14:24:24 INF] HTTP OPTIONS /api/cart/add responded 204 in 0.0810 ms
+[2026-08-04 14:24:24 INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-04 14:24:24 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-04 14:24:24 INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([CartId], [ProductId], [Quantity], [UnitPrice])
+OUTPUT INSERTED.[CartItemId]
+VALUES (@p0, @p1, @p2, @p3);
+[2026-08-04 14:24:24 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:24:24 INF] HTTP POST /api/cart/add responded 200 in 28.3185 ms
+[2026-08-04 14:24:26 INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-04 14:24:26 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-04 14:24:26 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([CartId], [ProductId], [Quantity], [UnitPrice])
+OUTPUT INSERTED.[CartItemId]
+VALUES (@p0, @p1, @p2, @p3);
+[2026-08-04 14:24:26 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:24:26 INF] HTTP POST /api/cart/add responded 200 in 24.7061 ms
+[2026-08-04 14:24:27 INF] HTTP OPTIONS /api/cart responded 204 in 5.8835 ms
+[2026-08-04 14:24:27 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:24:27 INF] HTTP GET /api/cart responded 200 in 8.3078 ms
+[2026-08-04 14:25:03 INF] HTTP OPTIONS /api/product responded 204 in 0.1342 ms
+[2026-08-04 14:25:03 INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:25:03 INF] HTTP GET /api/product responded 200 in 25.5244 ms
+[2026-08-04 14:25:06 INF] HTTP OPTIONS /api/product/7 responded 204 in 0.0725 ms
+[2026-08-04 14:25:06 INF] Executed DbCommand (4ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[ProductId] = @__productId_0
+[2026-08-04 14:25:06 INF] HTTP GET /api/product/7 responded 200 in 33.6685 ms
+[2026-08-04 14:25:06 INF] HTTP OPTIONS /api/product/category/2 responded 204 in 0.0926 ms
+[2026-08-04 14:25:06 INF] Executed DbCommand (3ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[CategoryId] = @__categoryId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2026-08-04 14:25:06 INF] Executed DbCommand (5ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+WHERE [p].[CategoryId] = @__categoryId_0 AND [p].[IsActive] = CAST(1 AS bit)
+[2026-08-04 14:25:06 INF] HTTP GET /api/product/category/2 responded 200 in 37.4699 ms
+[2026-08-04 14:25:17 INF] HTTP OPTIONS /api/product responded 204 in 0.0748 ms
+[2026-08-04 14:25:17 INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:25:17 INF] HTTP GET /api/product responded 200 in 17.3004 ms
+[2026-08-04 14:27:14 INF] HTTP OPTIONS /api/cart responded 204 in 0.0818 ms
+[2026-08-04 14:27:14 INF] Executed DbCommand (17ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:27:14 INF] HTTP GET /api/cart responded 200 in 26.4755 ms
+[2026-08-04 14:27:14 INF] HTTP OPTIONS /api/product responded 204 in 0.0514 ms
+[2026-08-04 14:27:14 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:27:14 INF] HTTP GET /api/product responded 200 in 14.3945 ms
+[2026-08-04 14:27:19 INF] HTTP OPTIONS /api/Product responded 204 in 0.0617 ms
+[2026-08-04 14:27:19 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:27:19 INF] HTTP GET /api/Product responded 200 in 8.5882 ms
+[2026-08-04 14:35:25 INF] HTTP OPTIONS /api/cart responded 204 in 0.0989 ms
+[2026-08-04 14:35:25 INF] Executed DbCommand (25ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:35:25 INF] HTTP GET /api/cart responded 200 in 48.3232 ms
+[2026-08-04 14:35:25 INF] HTTP OPTIONS /api/Product responded 204 in 0.0560 ms
+[2026-08-04 14:35:25 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:35:25 INF] HTTP GET /api/Product responded 200 in 12.2605 ms
+[2026-08-04 14:35:46 WRN] Failed to determine the https port for redirect.
+[2026-08-04 14:35:46 INF] HTTP OPTIONS /api/cart responded 204 in 94.6387 ms
+[2026-08-04 14:35:46 INF] HTTP OPTIONS /api/Product responded 204 in 0.4799 ms
+[2026-08-04 14:35:48 INF] Executed DbCommand (24ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:35:48 INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[SKU] AS [Sku], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:35:48 INF] HTTP GET /api/Product responded 200 in 1661.4422 ms
+[2026-08-04 14:35:48 INF] HTTP GET /api/cart responded 200 in 1952.2153 ms
+[2026-08-04 14:36:00 INF] HTTP OPTIONS /api/product responded 204 in 0.3904 ms
+[2026-08-04 14:36:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[SKU] AS [Sku], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:36:00 INF] HTTP GET /api/product responded 200 in 120.0542 ms
+[2026-08-04 14:40:46 INF] HTTP OPTIONS /api/cart responded 204 in 0.3615 ms
+[2026-08-04 14:40:46 INF] HTTP GET /api/cart responded 401 in 25.6897 ms
+[2026-08-04 14:40:46 INF] HTTP OPTIONS /api/auth/refresh-token responded 204 in 0.1314 ms
+[2026-08-04 14:40:46 INF] HTTP POST /api/auth/refresh-token responded 400 in 109.2151 ms
+[2026-08-04 14:40:48 INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1004 ms
+[2026-08-04 14:40:48 INF] Executed DbCommand (6ms) [Parameters=[@__loginDto_Email_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[CreatedDate], [u].[Email], [u].[FirstName], [u].[IsActive], [u].[LastName], [u].[ModifiedDate], [u].[PasswordHash], [u].[RoleId], [r].[RoleId], [r].[Name]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[RoleId]
+WHERE [u].[Email] = @__loginDto_Email_0
+[2026-08-04 14:40:48 INF] Executed DbCommand (4ms) [Parameters=[@__user_UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RefreshTokenId], [r].[Created], [r].[CreatedDate], [r].[Expires], [r].[ModifiedDate], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__user_UserId_0 AND [r].[Revoked] IS NULL AND [r].[Expires] > GETUTCDATE()
+[2026-08-04 14:40:48 INF] Executed DbCommand (12ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 256), @p1='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = DateTime2), @p5='?' (DbType = DateTime2), @p6='?' (DbType = DateTime2), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = DateTime2), @p10='?' (Size = 512), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [RefreshTokens] SET [ReasonRevoked] = @p0, [Revoked] = @p1
+OUTPUT 1
+WHERE [RefreshTokenId] = @p2;
+INSERT INTO [RefreshTokens] ([Created], [CreatedDate], [Expires], [ModifiedDate], [ReasonRevoked], [ReplacedByToken], [Revoked], [Token], [UserId])
+OUTPUT INSERTED.[RefreshTokenId]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+[2026-08-04 14:40:48 INF] HTTP POST /api/auth/login responded 200 in 729.1053 ms
+[2026-08-04 14:40:49 INF] HTTP OPTIONS /api/product responded 204 in 2.1501 ms
+[2026-08-04 14:40:49 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[SKU] AS [Sku], [p].[Name], [p].[Description], [p].[Price], [p].[StockQuantity], [p].[ImageUrl], [p].[IsActive], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[CategoryId]
+[2026-08-04 14:40:49 INF] HTTP GET /api/product responded 200 in 16.2102 ms
+[2026-08-04 14:40:52 INF] HTTP OPTIONS /api/cart/add responded 204 in 0.1320 ms
+[2026-08-04 14:40:52 INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-04 14:40:52 INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-04 14:40:52 INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-04 14:40:52 INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:40:52 INF] HTTP POST /api/cart/add responded 200 in 105.0496 ms
+[2026-08-04 14:40:55 INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[ProductId], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+FROM [Products] AS [p]
+WHERE [p].[ProductId] = @__p_0
+[2026-08-04 14:40:55 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[CartId] = [c0].[CartId]
+ORDER BY [c1].[CartId]
+[2026-08-04 14:40:55 INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-04 14:40:55 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:40:55 INF] HTTP POST /api/cart/add responded 200 in 22.7076 ms
+[2026-08-04 14:40:56 INF] HTTP OPTIONS /api/cart responded 204 in 0.2915 ms
+[2026-08-04 14:40:56 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:40:56 INF] HTTP GET /api/cart responded 200 in 15.5376 ms
+[2026-08-04 14:41:00 INF] HTTP OPTIONS /api/cart/items/13 responded 204 in 0.1128 ms
+[2026-08-04 14:41:00 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:00 INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-04 14:41:00 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:00 INF] HTTP PUT /api/cart/items/13 responded 200 in 32.8083 ms
+[2026-08-04 14:41:00 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:00 INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-04 14:41:00 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:00 INF] HTTP PUT /api/cart/items/13 responded 200 in 23.3605 ms
+[2026-08-04 14:41:01 INF] HTTP OPTIONS /api/cart/items/14 responded 204 in 0.0736 ms
+[2026-08-04 14:41:01 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:01 INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-04 14:41:01 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:01 INF] HTTP PUT /api/cart/items/14 responded 200 in 15.9271 ms
+[2026-08-04 14:41:01 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:01 INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [CartItems] SET [Quantity] = @p0
+OUTPUT 1
+WHERE [CartItemId] = @p1;
+[2026-08-04 14:41:01 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:01 INF] HTTP PUT /api/cart/items/14 responded 200 in 22.3816 ms
+[2026-08-04 14:41:03 INF] HTTP OPTIONS /api/cart responded 204 in 0.0746 ms
+[2026-08-04 14:41:03 INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:03 INF] HTTP GET /api/cart responded 200 in 14.7128 ms
+[2026-08-04 14:41:08 INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:08 INF] HTTP GET /api/cart responded 200 in 23.0664 ms
+[2026-08-04 14:41:08 INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[CartId], [c1].[CreatedDate], [c1].[ModifiedDate], [c1].[UserId], [s].[CartItemId], [s].[CartId], [s].[ProductId], [s].[Quantity], [s].[UnitPrice], [s].[ProductId0], [s].[CategoryId], [s].[CreatedDate], [s].[Description], [s].[ImageUrl], [s].[IsActive], [s].[ModifiedDate], [s].[Name], [s].[Price], [s].[SKU], [s].[StockQuantity]
+FROM (
+    SELECT TOP(1) [c].[CartId], [c].[CreatedDate], [c].[ModifiedDate], [c].[UserId]
+    FROM [Carts] AS [c]
+    WHERE [c].[UserId] = @__userId_0
+) AS [c1]
+LEFT JOIN (
+    SELECT [c0].[CartItemId], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice], [p].[ProductId] AS [ProductId0], [p].[CategoryId], [p].[CreatedDate], [p].[Description], [p].[ImageUrl], [p].[IsActive], [p].[ModifiedDate], [p].[Name], [p].[Price], [p].[SKU], [p].[StockQuantity]
+    FROM [CartItems] AS [c0]
+    INNER JOIN [Products] AS [p] ON [c0].[ProductId] = [p].[ProductId]
+) AS [s] ON [c1].[CartId] = [s].[CartId]
+ORDER BY [c1].[CartId], [s].[CartItemId]
+[2026-08-04 14:41:08 INF] HTTP GET /api/cart responded 200 in 16.2598 ms
+[2026-08-04 14:41:14 INF] HTTP OPTIONS /api/Category responded 204 in 0.7848 ms
+[2026-08-04 14:41:14 INF] HTTP OPTIONS /api/Category responded 204 in 0.5151 ms
+[2026-08-04 14:41:14 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:41:14 INF] HTTP GET /api/Category responded 200 in 54.0110 ms
+[2026-08-04 14:41:14 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:41:14 INF] HTTP GET /api/Category responded 200 in 9.5232 ms
+[2026-08-04 14:41:20 INF] HTTP OPTIONS /api/Category responded 204 in 0.1134 ms
+[2026-08-04 14:41:20 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:41:20 INF] HTTP GET /api/Category responded 200 in 9.7548 ms
+[2026-08-04 14:41:25 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:41:25 INF] HTTP GET /api/Category responded 200 in 8.7942 ms
+[2026-08-04 14:41:28 INF] HTTP OPTIONS /api/Category responded 204 in 0.0729 ms
+[2026-08-04 14:41:28 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[Name], [c].[Description], [c].[ParentCategoryId], [c0].[Name] AS [ParentCategoryName], [c].[IsActive]
+FROM [Categories] AS [c]
+LEFT JOIN [Categories] AS [c0] ON [c].[ParentCategoryId] = [c0].[CategoryId]
+[2026-08-04 14:41:28 INF] HTTP GET /api/Category responded 200 in 6.2190 ms
+[2026-08-04 23:20:42 INF] HTTP OPTIONS /api/cart responded 204 in 0.5878 ms
+[2026-08-04 23:20:42 INF] HTTP GET /api/cart responded 401 in 4.9711 ms
+[2026-08-04 23:20:42 INF] HTTP OPTIONS /api/auth/refresh-token responded 204 in 0.2778 ms
+[2026-08-04 23:20:42 INF] HTTP POST /api/auth/refresh-token responded 400 in 10.9868 ms

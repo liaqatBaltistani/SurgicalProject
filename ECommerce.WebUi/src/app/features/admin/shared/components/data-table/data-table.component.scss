@@ -1,0 +1,120 @@
+@import '../../../../../../styles/admin-theme';
+
+.data-table {
+  background-color: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.table-container {
+  overflow-x: auto;
+  min-height: 200px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mat-header-row {
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mat-header-cell {
+  padding: var(--spacing-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+
+  &.sortable {
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      background-color: var(--secondary-light);
+    }
+  }
+
+  .sort-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: var(--spacing-xs);
+    color: var(--text-tertiary);
+  }
+}
+
+.mat-row {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color var(--transition-fast);
+
+  &:hover {
+    background-color: var(--background-color);
+  }
+
+  &.selectable {
+    cursor: pointer;
+  }
+}
+
+.mat-cell {
+  padding: var(--spacing-md);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.select-column {
+  width: 48px;
+  text-align: center !important;
+}
+
+.actions-column {
+  width: 80px;
+  text-align: center !important;
+}
+
+.cell-image {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+}
+
+.table-loading {
+  padding: var(--spacing-lg);
+}
+
+.table-empty {
+  padding: var(--spacing-2xl);
+}
+
+.table-pagination {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+// Responsive
+@include responsive-breakpoint(mobile) {
+  .mat-header-cell,
+  .mat-cell {
+    padding: var(--spacing-sm);
+    font-size: 0.8125rem;
+  }
+
+  .cell-image {
+    width: 36px;
+    height: 36px;
+  }
+
+  .select-column,
+  .actions-column {
+    width: 40px;
+  }
+}

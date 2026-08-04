@@ -1,0 +1,39 @@
+@import '../../../../../styles/admin-theme';
+
+.admin-footer {
+  background-color: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin-top: auto;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.footer-copyright {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.footer-version {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+// Responsive
+@include responsive-breakpoint(mobile) {
+  .admin-footer {
+    padding: var(--spacing-md);
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}

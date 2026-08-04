@@ -1,0 +1,218 @@
+<div class="category-form-page">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>{{ categoryId ? 'Edit Category' : 'Add New Category' }}</h1>
+      <p>{{ categoryId ? 'Update category details below' : 'Fill in the category details below' }}</p>
+    </div>
+    <button mat-stroked-button (click)="onCancel()">
+      <mat-icon>arrow_back</mat-icon>
+      Back to Categories
+    </button>
+  </div>
+
+  <div class="form-container">
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" class="category-form">
+      <!-- Basic Information Section -->
+      <div class="form-section">
+        <h3>Basic Information</h3>
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Category Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter category name">
+            <mat-icon matPrefix>category</mat-icon>
+            <mat-error *ngIf="name?.hasError('required')">Category name is required</mat-error>
+            <mat-error *ngIf="name?.hasError('minlength')">Category name must be at least 2 characters</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" placeholder="Enter category description (optional)" rows="4"></textarea>
+            <mat-icon matPrefix>description</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Parent Category Section -->
+      <div class="form-section">
+        <h3>Parent Category</h3>
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Parent Category</mat-label>
+            <mat-select formControlName="parentCategoryId">
+              <mat-select-trigger>
+                <mat-icon>folder</mat-icon>
+                {{ parentCategoryId?.value ? 'Selected' : 'None (Root Category)' }}
+              </mat-select-trigger>
+              <mat-option [value]="null">None (Root Category)</mat-option>
+              <mat-option *ngFor="let cat of categories$ | async" [value]="cat.categoryId">
+                {{ cat.name }}
+              </mat-option>
+            </mat-select>
+            <mat-hint>Optional: Select a parent category to create a hierarchy</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Status Section -->
+      <div class="form-section">
+        <h3>Status</h3>
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="isActive">
+              <mat-select-trigger>
+                <mat-icon>{{ isActive?.value ? 'check_circle' : 'cancel' }}</mat-icon>
+                {{ isActive?.value ? 'Active' : 'Inactive' }}
+              </mat-select-trigger>
+              <mat-option [value]="true">
+                <mat-icon>check_circle</mat-icon>
+                Active
+              </mat-option>
+              <mat-option [value]="false">
+                <mat-icon>cancel</mat-icon>
+                Inactive
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button mat-stroked-button type="button" (click)="onCancel()" [disabled]="isSubmitting">
+          <mat-icon>close</mat-icon>
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting || categoryForm.invalid">
+          <mat-icon *ngIf="!isSubmitting">save</mat-icon>
+          <mat-icon *ngIf="isSubmitting" class="spin">hourglass_empty</mat-icon>
+          {{ isSubmitting ? 'Saving...' : (categoryId ? 'Update Category' : 'Create Category') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .category-form-page {
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  .header-content h1 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .header-content p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .form-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+  }
+
+  .category-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-section {
+    background: #f9f9f9;
+    padding: 24px;
+    border-radius: 8px;
+  }
+
+  .form-section h3 {
+    margin: 0 0 20px 0;
+    color: #444;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 12px;
+  }
+
+  .form-row {
+    margin-bottom: 20px;
+  }
+
+  .form-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 16px;
+  }
+
+  .form-actions button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  mat-select-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  mat-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+</style>

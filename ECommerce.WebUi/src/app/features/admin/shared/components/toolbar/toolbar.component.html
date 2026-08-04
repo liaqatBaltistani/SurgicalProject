@@ -1,0 +1,51 @@
+<div class="toolbar">
+  <div class="toolbar-left">
+    <admin-search-bar
+      *ngIf="showSearch"
+      (searchChange)="onSearch($event)"
+      [loading]="loading"
+    ></admin-search-bar>
+  </div>
+
+  <div class="toolbar-right">
+    <div *ngIf="showBulkActions && selectedCount > 0" class="bulk-actions">
+      <span class="selected-count">{{ selectedCount }} selected</span>
+      <button mat-button class="bulk-action-button" (click)="onBulkAction('delete')">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </div>
+
+    <button
+      *ngIf="showFilter"
+      mat-button
+      class="toolbar-button"
+      (click)="onFilterToggle()"
+      [disabled]="loading"
+    >
+      <mat-icon>filter_list</mat-icon>
+      <span>Filter</span>
+    </button>
+
+    <button
+      *ngIf="showExport"
+      mat-button
+      class="toolbar-button"
+      (click)="onExport()"
+      [disabled]="loading"
+    >
+      <mat-icon>download</mat-icon>
+      <span>Export</span>
+    </button>
+
+    <button
+      *ngIf="showRefresh"
+      mat-icon-button
+      class="toolbar-icon-button"
+      (click)="onRefresh()"
+      [disabled]="loading"
+    >
+      <mat-icon [class.spinning]="loading">refresh</mat-icon>
+    </button>
+  </div>
+</div>

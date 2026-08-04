@@ -1,0 +1,26 @@
+<div class="page-header">
+  <div *ngIf="breadcrumbs.length > 0" class="page-header-breadcrumbs">
+    <ng-container *ngFor="let crumb of breadcrumbs; let last = last">
+      <a *ngIf="crumb.url && !last" [routerLink]="crumb.url" class="breadcrumb-link">{{ crumb.label }}</a>
+      <span *ngIf="!crumb.url || last" [class.breadcrumb-current]="last" class="breadcrumb-item">{{ crumb.label }}</span>
+      <mat-icon *ngIf="!last" class="breadcrumb-separator">chevron_right</mat-icon>
+    </ng-container>
+  </div>
+
+  <div class="page-header-content">
+    <div class="page-header-left">
+      <button *ngIf="showBackButton" mat-icon-button class="back-button" (click)="onBackClick()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="page-header-text">
+        <h1 class="page-header-title">{{ title }}</h1>
+        <p *ngIf="subtitle" class="page-header-subtitle">{{ subtitle }}</p>
+      </div>
+    </div>
+    <div *ngIf="showAction" class="page-header-right">
+      <button mat-raised-button class="page-header-action" (click)="onActionClick()">
+        {{ actionText }}
+      </button>
+    </div>
+  </div>
+</div>
